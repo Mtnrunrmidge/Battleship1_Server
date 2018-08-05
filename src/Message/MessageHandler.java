@@ -105,12 +105,12 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
             System.out.println(getUsername());
 
             if (getUsername() != null) {
-                oos.writeObject(MessageFactory.getAckMessage());
+              //  oos.writeObject(MessageFactory.getAckMessage());
                 loginSuccess = true;
 
                 broadcast(message, getUsername());
             } else {
-                oos.writeObject(MessageFactory.getDuplicateUsernameMessage());
+               // oos.writeObject(MessageFactory.getDuplicateUsernameMessage());
                 oos.flush();
 
                 shutdownConnection();
