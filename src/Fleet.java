@@ -33,7 +33,7 @@ public class Fleet {
 
     /**
      * Remove ship from fleet when its been sunk
-     * @param sunkenShip
+     * @param
      */
 
     public boolean isShipSunk(Ship ship){
@@ -45,19 +45,21 @@ public class Fleet {
     }
     public void shipIsSunk(Ship sunkenShip){
         removeShipFromFleetByShipID(sunkenShip.getShipID());
+        sunkenShip.setShipStatus(Ship.shipStatus.SUNK.toString());
     }
 
     public void removeShipFromFleetByShipID(int shipID){
         int index = shipID - 1;
         this.ships.remove(index);
+        this.shipsRemaining--;
     }
 
     public void createNewFleet(){
-        addNewShip(this.ships, 1, shipsInFleet.CRUISER.toString(), 2, Ship.shipStatus.Active.toString());
-        addNewShip(this.ships, 2, shipsInFleet.SUBMARINE.toString(), 3, Ship.shipStatus.Active.toString());
-        addNewShip(this.ships, 3, shipsInFleet.CRUISER.toString(), 3, Ship.shipStatus.Active.toString());
-        addNewShip(this.ships, 4, shipsInFleet.BATTLESHIP.toString(), 4, Ship.shipStatus.Active.toString());
-        addNewShip(this.ships, 5, shipsInFleet.CARRIER.toString(), 5, Ship.shipStatus.Active.toString());
+        addNewShip(this.ships, 1, shipsInFleet.DESTROYER.toString(), 2, Ship.shipStatus.ACTIVE.toString());
+        addNewShip(this.ships, 2, shipsInFleet.SUBMARINE.toString(), 3, Ship.shipStatus.ACTIVE.toString());
+        addNewShip(this.ships, 3, shipsInFleet.CRUISER.toString(), 3, Ship.shipStatus.ACTIVE.toString());
+        addNewShip(this.ships, 4, shipsInFleet.BATTLESHIP.toString(), 4, Ship.shipStatus.ACTIVE.toString());
+        addNewShip(this.ships, 5, shipsInFleet.CARRIER.toString(), 5, Ship.shipStatus.ACTIVE.toString());
     }
 
     public void addNewShip(ArrayList<Ship> ships, int shipID, String shipName, int hitCount, String status){
