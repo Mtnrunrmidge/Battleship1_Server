@@ -9,7 +9,9 @@ public class JsonConverter {
 
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public static String writeJson(MessageWrapper mw) {
+    public static String writeJson(Message message) {
+        MessageWrapper mw = new MessageWrapper(message);
+
         String content = gson.toJson(mw);
 
         return content;
