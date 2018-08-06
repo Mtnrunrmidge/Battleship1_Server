@@ -1,5 +1,9 @@
+import java.util.*;
+
 public class GameHandler {
-    public Game game;
+    public ArrayList<Player> listOfPlayersWaitingForGame;
+    public ArrayList<Game> listOfCurrentGames;
+    //public Game game;
 
     public Player player1;
     public Player player2;
@@ -12,6 +16,40 @@ public class GameHandler {
 
     public GuessesByPlayer player1Guesses;
     public GuessesByPlayer player2Guesses;
+
+    public void run(){
+
+    }
+
+    public void validateUsername(){
+
+    }
+    public void createNewPlayer(){
+
+    }
+    public void addNewPlayerToReadyQueue(){
+
+    }
+    public void removePlayerFromReadyQueue(){
+
+    }
+    public void addNewGameToGameTracker(){
+
+    }
+    public void startNewGame(){
+
+    }
+    public void storeGameboardForPlayer(){
+
+    }
+
+    public void guessHandling(){
+
+    }
+
+    public void gameOver(){
+
+    }
 
     //get message from clients
     //call to MessageHandler to parse message

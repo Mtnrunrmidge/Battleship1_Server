@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cda5abd6-8fc2-475d-bcd1-75ac69e4f90c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Fleet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Fleet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameHandler.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -67,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fleet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Fleet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Fleet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+            <state relative-caret-position="465">
+              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding>
                 <element signature="e#189#195#0" expanded="true" />
                 <element signature="e#245#246#0" expanded="true" />
@@ -83,6 +83,15 @@
                 <element signature="e#564#565#0" expanded="true" />
                 <element signature="e#623#624#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GameHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -122,13 +131,13 @@
         <option value="$PROJECT_DIR$/src/Message/GridStatus.java" />
         <option value="$PROJECT_DIR$/src/Message/GameActionMessage.java" />
         <option value="$PROJECT_DIR$/src/Message/ResultMessage.java" />
-        <option value="$PROJECT_DIR$/src/GameHandler.java" />
         <option value="$PROJECT_DIR$/src/Message/GuessStatus.java" />
         <option value="$PROJECT_DIR$/src/Message/SystemMessage.java" />
         <option value="$PROJECT_DIR$/src/Message/MessageFactory.java" />
         <option value="$PROJECT_DIR$/src/Message/MessageHandler.java" />
         <option value="$PROJECT_DIR$/src/Ship.java" />
         <option value="$PROJECT_DIR$/src/Fleet.java" />
+        <option value="$PROJECT_DIR$/src/GameHandler.java" />
       </list>
     </option>
   </component>
@@ -272,7 +281,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24563000" />
+    <option name="totallyTimeSpent" value="27579000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="37" y="23" width="1400" height="772" extended-state="0" />
@@ -531,13 +540,6 @@
     <entry file="file://$PROJECT_DIR$/src/Message/GameActionMessage.java" />
     <entry file="file://$PROJECT_DIR$/src/Message/GridStatusMessage.java" />
     <entry file="file://$PROJECT_DIR$/src/Message/LoginMessage.java" />
-    <entry file="file://$PROJECT_DIR$/src/GameHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Message/ResultMessage.java" />
     <entry file="file://$PROJECT_DIR$/src/Message/MessageFactory.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -635,8 +637,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Fleet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+        <state relative-caret-position="465">
+          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding>
             <element signature="e#189#195#0" expanded="true" />
             <element signature="e#245#246#0" expanded="true" />
@@ -648,6 +650,13 @@
             <element signature="e#564#565#0" expanded="true" />
             <element signature="e#623#624#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
         </state>
       </provider>
     </entry>
