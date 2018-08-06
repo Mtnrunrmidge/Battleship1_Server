@@ -5,7 +5,7 @@ public class Ship {
     private String shipName;
 
 
-    public enum shipStatus {Active, Sunk}
+    public enum shipStatus {ACTIVE, SUNK}
     public enum shipNames{BATTLESHIP, CRUISER, SUBMARINE, CARRIER, DESTROYER}
 
     public Ship(int shipID, String shipName, int hitCount, String status) {
