@@ -1,9 +1,11 @@
 package Message;
 
+
+import Game.Player;
 import javafx.beans.binding.StringBinding;
 import jsonConverters.JsonConverter;
 import jsonConverters.MessageWrapper;
-
+import Game.GameHandler;
 import java.io.*;
 import java.net.Socket;
 import java.util.Iterator;
@@ -41,7 +43,7 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     }
 
     public static void shutdown() {
-        //GameHandler.shutdown();
+        //Game.GameHandler.shutdown();
 
         Iterator<MessageHandler> iterator = connections.iterator();
         while (iterator.hasNext()) {
@@ -81,10 +83,10 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     private boolean processLogin() {
         boolean loginSuccess = false;
         if (br == null) {
+            this.sendMessage(MessageFactory.sendDenyMessage());
             shutdownConnection();
             return false;
         }
-
 
         // receive and read json
         Message message = JsonConverter.readJson(jsonToString());
@@ -93,26 +95,28 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
             setUsername(message.getUsername());
         }
 
-        if (getUsername() != null) {
-            System.out.println("Adding " + getUsername() + " to clients");
+        if (getUsername() != null || !getUsername().equals("")) {
+
             int connectionCount = connections.size();
             connections.add(this);
 
-            // connections.contains(this)...??
             if (connections.size() <= connectionCount) {
                 username = null;
             }
-        }
 
-        System.out.println(getUsername());
+            //create new player
+            //add new player to game waiting queue
+            Player player = new Player();
+            GameHandler gh = new GameHandler();
+            player.setUsername(getUsername());
+            gh.addNewPlayerToGameWaitingQueue(player);
 
-        if (getUsername() != null) {
-          //  oos.writeObject(MessageFactory.getAckMessage());
+            this.sendMessage(MessageFactory.sendAcceptedUserNameMessage());
             loginSuccess = true;
 
             broadcast(message, getUsername());
         } else {
-           // oos.writeObject(MessageFactory.getDuplicateUsernameMessage());
+            this.sendMessage(MessageFactory.sendRejectedUserNameMessage());
             pw.flush();
 
             shutdownConnection();
@@ -207,9 +211,9 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
                     broadcast(message, this.getUsername());
                     sendMessage(message);
                 } else if (Message.MessageType.SYSTEM.equals(message.getMessageType())) {
-                    //GameHandler.handleSystemMessage((SystemMessage) message, this);
+                    //Game.GameHandler.handleSystemMessage((SystemMessage) message, this);
                 } else if (Message.MessageType.GAME_ACTION.equals(message.getMessageType())) {
-                   // GameHandler.handleActionMessage((GridStatusMessage) message, this);
+                   // Game.GameHandler.handleActionMessage((GridStatusMessage) message, this);
                 }
             }
         }

@@ -2,13 +2,28 @@ package Message;
 
 public class MessageFactory {
 
+    public static SystemMessage sendRejectedUserNameMessage(){
+
+        return SystemMessage.rejectUserNameMessage();
+    }
+
+    public static SystemMessage sendAcceptedUserNameMessage(){
+
+        return SystemMessage.acceptUserNameMessage();
+    }
+
+    public static SystemMessage sendDenyMessage(){
+
+        return SystemMessage.denyMessage();
+    }
+
     //client sends to server
 
 
     // result sent from server to the attacker
 
 
-    // Game message to the attackee, board to ensure integrity
+    // Game.Game message to the attackee, board to ensure integrity
 
 
     // ready to play signal from client to server
