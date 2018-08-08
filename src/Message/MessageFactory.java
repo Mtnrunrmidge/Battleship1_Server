@@ -23,7 +23,7 @@ public class MessageFactory {
     // result sent from server to the attacker
 
 
-    // Game message to the attackee, board to ensure integrity
+    // Game.Game message to the attackee, board to ensure integrity
 
 
     // ready to play signal from client to server
