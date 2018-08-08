@@ -2,7 +2,9 @@ package Game;
 
 import Message.MessageHandler;
 import Game.Player;
+import Game.Game;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Queue;
@@ -18,7 +20,10 @@ public class GameHandler{
     public Gameboard gameboard;
     public GuessesByPlayer guessesBoard;
     public Fleet fleet;
-    public Queue<Player> gameWaitingQueue;
+    public ArrayList<Player> gameWaitingQueue = new ArrayList<Player>();
+    public ArrayList<Game> activeGames = new ArrayList<Game>();
+    public int gameID = 0;
+
 
     public Fleet player1Fleet;
     public Fleet player2Fleet;
@@ -32,117 +37,31 @@ public class GameHandler{
         guessesBoard = new GuessesByPlayer(GuessesByPlayer.createNewEmptyGuessesBoard());
         fleet = new Fleet();
         player = new Player(player.getUsername(), gameboard, guessesBoard, fleet, false);
-        gameWaitingQueue = new Queue<Game.Player>()
-        {
-            @Override
-            public boolean add(Game.Player player)
-            {
-                return false;
-            }
-
-            @Override
-            public boolean offer(Game.Player player)
-            {
-                return false;
-            }
-
-            @Override
-            public Game.Player remove()
-            {
-                return null;
-            }
-
-            @Override
-            public Game.Player poll()
-            {
-                return null;
-            }
-
-            @Override
-            public Game.Player element()
-            {
-                return null;
-            }
-
-            @Override
-            public Game.Player peek()
-            {
-                return null;
-            }
-
-            @Override
-            public int size()
-            {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty()
-            {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o)
-            {
-                return false;
-            }
-
-            @Override
-            public Iterator<Game.Player> iterator()
-            {
-                return null;
-            }
-
-            @Override
-            public Object[] toArray()
-            {
-                return new Object[0];
-            }
-
-            @Override
-            public <T> T[] toArray(T[] a)
-            {
-                return null;
-            }
-
-            @Override
-            public boolean remove(Object o)
-            {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(Collection<?> c)
-            {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(Collection<? extends Game.Player> c)
-            {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(Collection<?> c)
-            {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(Collection<?> c)
-            {
-                return false;
-            }
-
-            @Override
-            public void clear()
-            {
-
-            }
-        }
+        gameWaitingQueue.add(player);
     }
+
+    public boolean enoughPlayersReady() {
+       if (gameWaitingQueue.size() >= 2) {
+           return true;
+       } else
+       {
+           return false;
+       }
+    }
+
+    public void startNewGame() {
+        player1 = gameWaitingQueue.get(0);
+        player2 = gameWaitingQueue.get(1);
+        removePlayersFromQueue(gameWaitingQueue);
+        Game game = new Game(player1, player2, gameID);
+        gameID++;
+    }
+
+    public void removePlayersFromQueue(ArrayList<Player> listOfPlayers) {
+        listOfPlayers.remove(0);
+        listOfPlayers.remove(1);
+    }
+
 
 
     //call to MessageHandler to parse message
