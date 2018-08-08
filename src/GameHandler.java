@@ -1,3 +1,5 @@
+import Message.MessageHandler;
+
 public class GameHandler {
     public Game game;
 
@@ -14,6 +16,9 @@ public class GameHandler {
     public GuessesByPlayer player2Guesses;
 
     //get message from clients
+    public void playerRequestNewGame(MessageHandler msgHandler) {
+
+    }
     //call to MessageHandler to parse message
         //if a valid message
             //call method to handle username validations, creating new player, putting them in a queue, potentially matching them with another player and creating a new game/starting a new game

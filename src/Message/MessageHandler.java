@@ -81,10 +81,10 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     private boolean processLogin() {
         boolean loginSuccess = false;
         if (br == null) {
+            this.sendMessage(MessageFactory.sendDenyMessage());
             shutdownConnection();
             return false;
         }
-
 
         // receive and read json
         Message message = JsonConverter.readJson(jsonToString());
@@ -93,26 +93,21 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
             setUsername(message.getUsername());
         }
 
-        if (getUsername() != null) {
-            System.out.println("Adding " + getUsername() + " to clients");
+        if (getUsername() != null || !getUsername().equals("")) {
+
             int connectionCount = connections.size();
             connections.add(this);
 
-            // connections.contains(this)...??
             if (connections.size() <= connectionCount) {
                 username = null;
             }
-        }
 
-        System.out.println(getUsername());
-
-        if (getUsername() != null) {
-          //  oos.writeObject(MessageFactory.getAckMessage());
+            this.sendMessage(MessageFactory.sendAcceptedUserNameMessage());
             loginSuccess = true;
 
             broadcast(message, getUsername());
         } else {
-           // oos.writeObject(MessageFactory.getDuplicateUsernameMessage());
+            this.sendMessage(MessageFactory.sendRejectedUserNameMessage());
             pw.flush();
 
             shutdownConnection();

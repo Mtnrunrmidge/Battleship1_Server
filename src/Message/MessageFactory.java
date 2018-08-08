@@ -2,6 +2,21 @@ package Message;
 
 public class MessageFactory {
 
+    public static SystemMessage sendRejectedUserNameMessage(){
+
+        return SystemMessage.rejectUserNameMessage();
+    }
+
+    public static SystemMessage sendAcceptedUserNameMessage(){
+
+        return SystemMessage.acceptUserNameMessage();
+    }
+
+    public static SystemMessage sendDenyMessage(){
+
+        return SystemMessage.denyMessage();
+    }
+
     //client sends to server
 
 
