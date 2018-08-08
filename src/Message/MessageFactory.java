@@ -17,6 +17,12 @@ public class MessageFactory {
         return SystemMessage.denyMessage();
     }
 
+    public static SystemMessage sendStartGameMessage(){
+
+        return SystemMessage.gameHasBegun();
+    }
+
+
     //client sends to server
 
 

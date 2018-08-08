@@ -1,8 +1,10 @@
 package Game;
 
+import Message.MessageFactory;
 import Message.MessageHandler;
 import Game.Player;
 import Game.Game;
+import Message.SystemMessage;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,6 +40,9 @@ public class GameHandler{
         fleet = new Fleet();
         player = new Player(player.getUsername(), gameboard, guessesBoard, fleet, false);
         gameWaitingQueue.add(player);
+        if(enoughPlayersReady()){
+            startNewGame();
+        }
     }
 
     public boolean enoughPlayersReady() {
@@ -55,14 +60,22 @@ public class GameHandler{
         removePlayersFromQueue(gameWaitingQueue);
         Game game = new Game(player1, player2, gameID);
         gameID++;
+        activeGames.add(game);
+        sendStartGameMessage();
+    }
+
+    public static void sendStartGameMessage(){
+        MessageHandler.sendMessage(MessageFactory.sendStartGameMessage());
+    }
+
+    public static void handleSystemMessage(){
+        
     }
 
     public void removePlayersFromQueue(ArrayList<Player> listOfPlayers) {
         listOfPlayers.remove(0);
         listOfPlayers.remove(1);
     }
-
-
 
     //call to MessageHandler to parse message
         //if a valid message

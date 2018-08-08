@@ -20,7 +20,7 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     private BufferedReader br;
     private PrintWriter pw;
 
-    private MessageHandler(Socket socket) {
+    public MessageHandler(Socket socket) {
         this.socket = socket;
 
         try {
