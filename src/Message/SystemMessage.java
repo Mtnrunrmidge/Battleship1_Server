@@ -10,7 +10,7 @@ public class SystemMessage extends Message {
         this.response = response;
     }
 
-    public enum SystemResponse {ACK, DENY, READY, START, GAMEOVER, DENYLOGIN, ACKLOGIN}
+    public enum SystemResponse {ACK, DENY, GAMEOVER, DENYLOGIN, ACKLOGIN, CONNECTED_STARTGAME}
 
     public static SystemMessage rejectUserNameMessage() {
         return new SystemMessage(SystemResponse.DENYLOGIN);
@@ -22,6 +22,10 @@ public class SystemMessage extends Message {
 
     public static SystemMessage denyMessage() {
         return new SystemMessage(SystemResponse.DENY);
+    }
+
+    public static SystemMessage gameHasBegun() {
+        return new SystemMessage(SystemResponse.CONNECTED_STARTGAME);
     }
 
     @Override
