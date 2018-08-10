@@ -11,7 +11,7 @@ public class GameHandler implements Runnable{
     public enum GameTurn {A, B}
     private GameState currentState = GameState.JOIN_PHASE;
     private static GameTurn currentTurn  = GameTurn.A;
-    private static ConcurrentSkipListMap<MessageHandler, Player> players = new ConcurrentSkipListMap<>();
+    private static ConcurrentSkipListMap<MessageHandler, GameLogic> players = new ConcurrentSkipListMap<>();
 //    private List<String> onlinePlayers = new ArrayList<>();
 //    private Set<String> inGamePlayers = new HashSet<>();
     private final int BOARDSIZE = 10;
@@ -43,12 +43,12 @@ public class GameHandler implements Runnable{
 
                 if (currentTurn == GameTurn.A) {
                     playerBoardA = sysMsg.getGt();
-                    Player.printBoard(playerBoardA);
+                    GameLogic.printBoard(playerBoardA);
                     players.get(mh).setMyBoard(playerBoardA);
 
                 } else {
                     playerBoardB = sysMsg.getGt();
-                    Player.printBoard(playerBoardB);
+                    GameLogic.printBoard(playerBoardB);
                     players.get(mh).setMyBoard(playerBoardB);
                 }
 
@@ -79,10 +79,10 @@ public class GameHandler implements Runnable{
         // messageSender
         if (players.get(mh).getTurn().equals(currentTurn)) {
 
-            Player messageSender = players.get(mh);
-            ConcurrentSkipListMap<MessageHandler, Player> temp = players.clone();
+            GameLogic messageSender = players.get(mh);
+            ConcurrentSkipListMap<MessageHandler, GameLogic> temp = players.clone();
             temp.remove(mh);
-            Player theOpponent = temp.entrySet().iterator().next().getValue();
+            GameLogic theOpponent = temp.entrySet().iterator().next().getValue();
 
             nextGameTurn();
             if (msg.getGs().equals(GridStatus.ATTEMPT)) {
@@ -110,7 +110,7 @@ public class GameHandler implements Runnable{
             throw new IllegalStateException("It's " + currentState + ", not READY phase.");
         }
 
-        players.put(handler, new Player(handler.getUsername(), currentTurn));
+        players.put(handler, new GameLogic(handler.getUsername(), currentTurn));
         System.out.println(handler.getUsername() + " " + currentTurn);
         System.out.println(currentState);
         if (players.size() > GAMESIZE) {
