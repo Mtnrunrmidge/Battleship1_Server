@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public abstract class Message implements Serializable {
 
-    private String username;
+    public String username;
     public enum MessageType {LOGIN, SYSTEM, CHAT, GAME_ACTION, RESULT}
     public abstract MessageType getMessageType();
     public String module = "battleship1";
