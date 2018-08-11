@@ -27,6 +27,7 @@ public class GameActionMessage extends ResultMessage {
     @Override
     public String toString() {
         return "GameActionMessage{" +
+                "GuessMadeBy= " + username +
                 ", hitMiss=" + hitMiss +
                 ", sinkShip=" + sinkShip +
                 ", isSurvival=" + isSurvival +

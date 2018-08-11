@@ -79,27 +79,47 @@ public class GameHandler implements Runnable{
             GameLogic messageSender = players.get(mh);
             ConcurrentHashMap<MessageHandler, GameLogic> temp = new ConcurrentHashMap<>(players);
             temp.remove(mh);
-            GameLogic theOpponent = temp.entrySet().iterator().next().getValue();
+            MessageHandler opponentsMessageHandler = temp.entrySet().iterator().next().getKey();
+            GameLogic opponentsGameLogic = temp.get(opponentsMessageHandler);
 
-            nextGameTurn();
             if (msg.getGs().equals(GridStatus.ATTEMPT)) {
                 System.out.println(msg.toString());
-                GridType[] result = theOpponent.getHit(msg.getGs(), msg.getRow(), msg.getCol());
+                GridType[] result = opponentsGameLogic.getHit(msg.getGs(), msg.getRow(), msg.getCol());
 
-                // brief results send to the attacker
-                mh.sendMessage(MessageFactory.getResultMessage(mh.getUsername(), result, msg.getRow(), msg.getCol()));
-                // results with updated board send to the attackee
-                mh.sendMessage(MessageFactory.getGameActionMessage(theOpponent.getUsername(), result, msg.getRow(), msg.getCol(),
-                        players.get(mh).getMyBoard()));
+                //send duplicate guess message
+                if(result[0] == null){
+                    mh.sendMessage(MessageFactory.getDuplicateGuessMessage());
+                }
+                else {
+                    nextGameTurn();
+                    // brief results send to the attacker
+                    mh.sendMessage(MessageFactory.getResultMessage(mh.getUsername(), result, msg.getRow(), msg.getCol()));
+                    // results with updated board send to the attackee
+                    mh.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
+                            players.get(mh).getMyBoard()));
 
-                if (!theOpponent.checkSurvival()) {
-                    game.currentState = GameState.NOT_PLAYING;
-                    game.broadcast(MessageFactory.getAckMessage());
+                    if (result[2] == GridStatus.Empty) {
+                        game.currentState = GameState.NOT_PLAYING;
+                        opponentsMessageHandler.sendMessage(MessageFactory.getLoserGameOverMessage());
+                        mh.sendMessage(MessageFactory.getWinnerGameOverMessage());
+                        terminateGame();
+
+                    }
+                    sendBeginTurnMessageToOtherPlayer(opponentsMessageHandler);
                 }
             }
         } else {
             mh.sendMessage(MessageFactory.getDenyMessage());
         }
+    }
+
+    public static void sendBeginTurnMessageToOtherPlayer(MessageHandler opponentsMessageHandler){
+        opponentsMessageHandler.sendMessage(MessageFactory.getBeginTurn());
+        System.out.println("Send new turn message to other player");
+    }
+
+    public static void terminateGame(){
+        MessageHandler.shutdown();
     }
 
     public void join(MessageHandler handler) {

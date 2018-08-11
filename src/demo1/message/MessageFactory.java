@@ -48,12 +48,22 @@ public class MessageFactory {
     public static SystemMessage getDuplicateUsernameMessage() {
         return SystemMessage.getDuplicateUsernameMessage();
     }
+    public static SystemMessage getDuplicateGuessMessage() {
+        return SystemMessage.getDuplicateGuessMessage();
+    }
+
+    public static SystemMessage getBeginTurn() {
+        return SystemMessage.getBeginTurn();
+    }
 
     public static SystemMessage getDenyMessage() {
         return SystemMessage.getDenyMessage();
     }
 
-    public static SystemMessage getGameOverMessage(String winner) {
-        return SystemMessage.getGameOverMessage(winner);
+    public static SystemMessage getWinnerGameOverMessage() {
+        return SystemMessage.getWinnerGameOverMessage();
+    }
+    public static SystemMessage getLoserGameOverMessage() {
+        return SystemMessage.getLoserGameOverMessage();
     }
 }
