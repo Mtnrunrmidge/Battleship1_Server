@@ -3,6 +3,7 @@ package demo1;
 import demo1.message.*;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 public class GameHandler implements Runnable{
@@ -11,9 +12,7 @@ public class GameHandler implements Runnable{
     public enum GameTurn {A, B}
     private GameState currentState = GameState.JOIN_PHASE;
     private static GameTurn currentTurn  = GameTurn.A;
-    private static ConcurrentSkipListMap<MessageHandler, GameLogic> players = new ConcurrentSkipListMap<>();
-//    private List<String> onlinePlayers = new ArrayList<>();
-//    private Set<String> inGamePlayers = new HashSet<>();
+    private static ConcurrentHashMap<MessageHandler, GameLogic> players = new ConcurrentHashMap<>();
     private final int BOARDSIZE = 10;
     private static GridType[][] playerBoardA;
     private static GridType[][] playerBoardB;
@@ -52,9 +51,6 @@ public class GameHandler implements Runnable{
                     players.get(mh).setMyBoard(playerBoardB);
                 }
 
-
-                nextGameTurn();
-
                 if (players.size() == GAMESIZE) {
                     game.startGame();
                 }
@@ -65,9 +61,8 @@ public class GameHandler implements Runnable{
     }
 
     private static void nextGameTurn() {
-        System.out.println(currentTurn);
         currentTurn = (currentTurn == GameTurn.A)? GameTurn.B: GameTurn.A;
-        System.out.println(currentTurn);
+        System.out.println("current game turn: " + currentTurn);
         System.out.println();
     }
 
@@ -80,7 +75,7 @@ public class GameHandler implements Runnable{
         if (players.get(mh).getTurn().equals(currentTurn)) {
 
             GameLogic messageSender = players.get(mh);
-            ConcurrentSkipListMap<MessageHandler, GameLogic> temp = players.clone();
+            ConcurrentHashMap<MessageHandler, GameLogic> temp = new ConcurrentHashMap<>(players);
             temp.remove(mh);
             GameLogic theOpponent = temp.entrySet().iterator().next().getValue();
 
