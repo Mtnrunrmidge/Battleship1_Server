@@ -51,6 +51,8 @@ public class GameHandler implements Runnable{
                     players.get(mh).setMyBoard(playerBoardB);
                 }
 
+                nextGameTurn();
+
                 if (players.size() == GAMESIZE) {
                     game.startGame();
                 }
