@@ -1,6 +1,6 @@
 package demo1.jsonConverters;
 
-import OLD.Message.Message;
+import demo1.message.Message;
 
 public class MessageWrapper {
 

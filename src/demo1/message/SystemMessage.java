@@ -4,7 +4,7 @@ import demo1.GridType;
 
 public class SystemMessage extends Message {
 
-    public enum SystemResponse {ACK, DENY, READY, START, OVER, DUPLICATE_USERNAME}
+    public enum SystemResponse {ACK, DENY, READY, START, GAME_OVER_WINNER, GAME_OVER_LOSER, DUPLICATE_USERNAME, DUPLICATE_GUESS, BEGIN_TURN}
     private SystemResponse sr;
     private String winner;
     private GridType[][] gt;
@@ -50,8 +50,19 @@ public class SystemMessage extends Message {
         return new SystemMessage(SystemResponse.DUPLICATE_USERNAME);
     }
 
-    public static SystemMessage getGameOverMessage(String username) {
-        return new SystemMessage(username, SystemResponse.OVER);
+    public static SystemMessage getDuplicateGuessMessage() {
+        return new SystemMessage(SystemResponse.DUPLICATE_GUESS);
+    }
+
+    public static SystemMessage getBeginTurn() {
+        return new SystemMessage(SystemResponse.BEGIN_TURN);
+    }
+
+    public static SystemMessage getWinnerGameOverMessage() {
+        return new SystemMessage(SystemResponse.GAME_OVER_WINNER);
+    }
+    public static SystemMessage getLoserGameOverMessage() {
+        return new SystemMessage(SystemResponse.GAME_OVER_LOSER);
     }
 
     public SystemResponse getSystemResponse() {

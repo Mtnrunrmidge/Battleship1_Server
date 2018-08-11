@@ -4,10 +4,9 @@ import demo1.message.GridStatusMessage;
 import demo1.message.Message;
 import demo1.message.MessageFactory;
 import demo1.message.SystemMessage;
+import demo1.jsonConverters.*;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.Iterator;
 import java.util.Set;
@@ -18,15 +17,20 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     private static Set<MessageHandler> connections = new ConcurrentSkipListSet<>();
     private String username;
     private Socket socket;
-    private ObjectOutputStream oos;
-    private ObjectInputStream ois;
+    private BufferedReader br;
+    private PrintWriter pw;
+   // private ObjectOutputStream oos;
+  //  private ObjectInputStream ois;
 
     private MessageHandler(Socket socket) {
         this.socket = socket;
 
         try {
-            oos = new ObjectOutputStream(socket.getOutputStream());
-            ois = new ObjectInputStream(socket.getInputStream());
+            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            pw = new PrintWriter(new OutputStreamWriter(
+                    socket.getOutputStream(), "UTF-8"), true);
+//            oos = new ObjectOutputStream(socket.getOutputStream());
+//            ois = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,20 +55,17 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     }
 
     private void shutdownConnection() {
-        if (oos != null) {
-            try {
-                ois.close();
-            } catch (IOException e) {
-
-            }
-        }
-
-        if (ois != null) {
-            try {
-                ois.close();
-            } catch (IOException e) {
+        if (br != null) {
+            try{
+                br.close();
+            }catch(IOException e){
                 e.printStackTrace();
             }
+
+        }
+
+        if (pw != null) {
+            pw.close();
         }
 
         try {
@@ -82,51 +83,58 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
         }
     }
 
-    private boolean processLogin() {
-        boolean loginSuccess = false;
+    private String jsonToString() {
+        StringBuilder sb = new StringBuilder();
+        String line;
         try {
-            if (ois == null) {
-                shutdownConnection();
-                return false;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
             }
-
-            Message message = (Message) ois.readObject();
-
-            if (message.getMessageType().equals(Message.MessageType.LOGIN)) {
-                setUsername(message.getUsername());
-            }
-
-            if (getUsername() != null) {
-                System.out.println("Adding " + getUsername() + " to clients");
-                int connectionCount = connections.size();
-                connections.add(this);
-
-                // connections.contains(this)...??
-                if (connections.size() <= connectionCount) {
-                    username = null;
-                }
-            }
-
-            System.out.println(getUsername());
-
-            if (getUsername() != null) {
-                oos.writeObject(MessageFactory.getAckMessage());
-                loginSuccess = true;
-
-                broadcast(message, getUsername());
-            } else {
-                oos.writeObject(MessageFactory.getDuplicateUsernameMessage());
-                oos.flush();
-
-                shutdownConnection();
-            }
-            oos.flush();
-
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
+
+        return sb.toString();
+    }
+
+    private boolean processLogin() {
+        boolean loginSuccess = false;
+        if (br == null) {
+            shutdownConnection();
+            return false;
+        }
+
+        Message message = JsonConverter.readJson(jsonToString());
+
+        if (message.getMessageType().equals(Message.MessageType.LOGIN)) {
+            setUsername(message.getUsername());
+        }
+
+        if (getUsername() != null) {
+            System.out.println("Adding " + getUsername() + " to clients");
+            int connectionCount = connections.size();
+            connections.add(this);
+
+            // connections.contains(this)...??
+            if (connections.size() <= connectionCount) {
+                username = null;
+            }
+        }
+
+        System.out.println(getUsername());
+
+        if (getUsername() != null) {
+            this.sendMessage(MessageFactory.getAckMessage());
+            loginSuccess = true;
+
+            broadcast(message, getUsername());
+        } else {
+            this.sendMessage(MessageFactory.getDuplicateUsernameMessage());
+            pw.flush();
+
+            shutdownConnection();
+        }
+        pw.flush();
 
         return loginSuccess;
     }
@@ -151,12 +159,9 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
 
     // send the message to the user according to the username
     public void sendMessage(Message message) {
-        try {
-            oos.writeObject(message);
-            oos.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // write and send Json
+        pw.print(JsonConverter.writeJson(message));
+        pw.flush();
     }
 
     @Override
@@ -197,23 +202,17 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     @Override
     public void run() {
         if (processLogin()) {
-            try {
-                while (!Thread.interrupted() && socket.isConnected() && !socket.isClosed()) {
-                    Message message = (Message) ois.readObject();
+            while (!Thread.interrupted() && socket.isConnected() && !socket.isClosed()) {
+                Message message = JsonConverter.readJson(jsonToString());
 
-                    if (Message.MessageType.CHAT.equals(message.getMessageType())) {
-                        broadcast(message, this.getUsername());
-                        sendMessage(message);
-                    } else if (Message.MessageType.SYSTEM.equals(message.getMessageType())) {
-                        GameHandler.handleSystemMessage((SystemMessage) message, this);
-                    } else if (Message.MessageType.GAME_ACTION.equals(message.getMessageType())) {
-                        GameHandler.handleActionMessage((GridStatusMessage) message, this);
-                    }
+                if (Message.MessageType.CHAT.equals(message.getMessageType())) {
+                    broadcast(message, this.getUsername());
+                    sendMessage(message);
+                } else if (Message.MessageType.SYSTEM.equals(message.getMessageType())) {
+                    GameHandler.handleSystemMessage((SystemMessage) message, this);
+                } else if (Message.MessageType.GAME_ACTION.equals(message.getMessageType())) {
+                    GameHandler.handleActionMessage((GridStatusMessage) message, this);
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
     }

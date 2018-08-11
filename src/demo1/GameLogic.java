@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class GameLogic {
 
     private HashSet<Ship.ShipType> survivedShips;
-    private String username;
+    public String username;
     private final static int BOARDSIZE = 10;
     //myboard is the board originally sent from client. Once set to targetboard don't use anymore.
     private GridType[][] myBoard = new GridType[BOARDSIZE][BOARDSIZE];
@@ -74,7 +74,8 @@ public class GameLogic {
                 myBoard[row][col] = GridStatus.MISS;
                 result[0] = GridStatus.MISS;
             } else {
-                throw new IllegalStateException("Already attacked");
+                sendDuplicateGuessMessage();
+                //throw new IllegalStateException("Already attacked");
             }
         }
 
@@ -87,6 +88,10 @@ public class GameLogic {
         }
 
         return result; //returns the [0] guess status, [1] shipname that has been sunk (only if its been sunk), [2] is game over: empty if yes/null if null
+    }
+
+    public GridType[] sendDuplicateGuessMessage(){
+        return null;
     }
 
     /**
@@ -112,6 +117,7 @@ public class GameLogic {
         //if there is a sunk ship
         if (shipSunkInThisMove.size() == 1) {
             Ship.ShipType sunkShipName = shipSunkInThisMove.iterator().next();
+            survivedShips = localSurvivedShips;
             return sunkShipName;
         } else if (shipSunkInThisMove.size() > 1) {
             try {
@@ -120,7 +126,6 @@ public class GameLogic {
                 e.printStackTrace();
             }
         }
-
         survivedShips = localSurvivedShips;
         return null;
     }
@@ -141,6 +146,7 @@ public class GameLogic {
     }
 
     public void hitOrMiss(GridStatus gs, int row, int col) {
+
         if (targetBoard[row][col] == GridStatus.ATTEMPT ) {
             this.targetBoard[row][col] = gs;
         } else {
