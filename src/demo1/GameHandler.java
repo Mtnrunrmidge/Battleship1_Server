@@ -14,8 +14,8 @@ public class GameHandler implements Runnable{
     private static GameTurn currentTurn  = GameTurn.A;
     private static ConcurrentHashMap<MessageHandler, GameLogic> players = new ConcurrentHashMap<>();
     private final int BOARDSIZE = 10;
-    private static GridType[][] playerBoardA;
-    private static GridType[][] playerBoardB;
+    private static GridStatus[][] playerBoardA;
+    private static GridStatus[][] playerBoardB;
     private static final int GAMESIZE = 2;
     private static GameHandler game = new GameHandler();
 
@@ -84,7 +84,7 @@ public class GameHandler implements Runnable{
 
             if (msg.getGs().equals(GridStatus.ATTEMPT)) {
                 System.out.println(msg.toString());
-                GridType[] result = opponentsGameLogic.getHit(msg.getGs(), msg.getRow(), msg.getCol());
+                GridStatus[] result = opponentsGameLogic.getHit(msg.getGs(), msg.getRow(), msg.getCol());
 
                 //send duplicate guess message
                 if(result[0] == null){
@@ -98,7 +98,7 @@ public class GameHandler implements Runnable{
                     mh.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
                             players.get(mh).getMyBoard()));
 
-                    if (result[2] == GridStatus.Empty) {
+                    if (result[2] == GridStatus.EMPTY) {
                         game.currentState = GameState.NOT_PLAYING;
                         opponentsMessageHandler.sendMessage(MessageFactory.getLoserGameOverMessage());
                         mh.sendMessage(MessageFactory.getWinnerGameOverMessage());
@@ -166,19 +166,19 @@ public class GameHandler implements Runnable{
         return currentTurn;
     }
 
-    public GridType[][] getPlayerBoardA() {
+    public GridStatus[][] getPlayerBoardA() {
         return playerBoardA;
     }
 
-    public void setPlayerBoardA(GridType[][] playerBoardA) {
+    public void setPlayerBoardA(GridStatus[][] playerBoardA) {
         this.playerBoardA = playerBoardA;
     }
 
-    public GridType[][] getPlayerBoardB() {
+    public GridStatus[][] getPlayerBoardB() {
         return playerBoardB;
     }
 
-    public void setPlayerBoardB(GridType[][] playerBoardB) {
+    public void setPlayerBoardB(GridStatus[][] playerBoardB) {
         this.playerBoardB = playerBoardB;
     }
 

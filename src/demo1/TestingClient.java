@@ -39,20 +39,20 @@ public class TestingClient {
 
         writeMessage(oos, MessageFactory.getLoginMessage("ccc"));
 
-        GridType[][] gt = new GridType[10][10];
+        GridStatus[][] gt = new GridStatus[10][10];
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                gt[i][j] = GridStatus.Empty;
+                gt[i][j] = GridStatus.EMPTY;
             }
         }
 
-        gt[2][5] = Ship.ShipType.Cruiser;
-        gt[1][2] = Ship.ShipType.Battleship;
-        gt[3][4] = Ship.ShipType.Carrier;
-        gt[3][5] = Ship.ShipType.Carrier;
-        gt[4][1] = Ship.ShipType.Destroyer;
-        gt[9][2] = Ship.ShipType.Submarine;
+        gt[2][5] = GridStatus.Cruiser;
+        gt[1][2] = GridStatus.Battleship;
+        gt[3][4] = GridStatus.Carrier;
+        gt[3][5] = GridStatus.Carrier;
+        gt[4][1] = GridStatus.Destroyer;
+        gt[9][2] = GridStatus.Submarine;
 
         writeMessage(oos, MessageFactory.getReadyMessage(gt));
     }

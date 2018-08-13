@@ -1,6 +1,6 @@
 package demo1.message;
 
-import demo1.GridType;
+import demo1.GridStatus;
 
 public class MessageFactory {
 
@@ -11,12 +11,12 @@ public class MessageFactory {
 
 
     // result sent from server to the attacker
-    public static ResultMessage getResultMessage(String username, GridType[] gt, int row, int col) {
+    public static ResultMessage getResultMessage(String username, GridStatus[] gt, int row, int col) {
         return new ResultMessage(username, gt, row, col);
     }
 
     // Game message to the attackee, board to ensure integrity
-    public static GameActionMessage getGameActionMessage(String username, GridType[] gt, int row, int col, GridType[][] board) {
+    public static GameActionMessage getGameActionMessage(String username, GridStatus[] gt, int row, int col, GridStatus[][] board) {
         return new GameActionMessage(username, gt, row, col, board);
     }
 
@@ -33,7 +33,7 @@ public class MessageFactory {
     }
 
     // ready to play signal from client to server
-    public static SystemMessage getReadyMessage(GridType[][] gt) {
+    public static SystemMessage getReadyMessage(GridStatus[][] gt) {
         return SystemMessage.getReadyMessage(gt);
     }
 

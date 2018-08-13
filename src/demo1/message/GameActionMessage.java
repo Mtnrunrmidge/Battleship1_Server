@@ -1,21 +1,21 @@
 package demo1.message;
 
-import demo1.GridType;
+import demo1.GridStatus;
 
 public class GameActionMessage extends ResultMessage {
 
-    private GridType[][] board;
+    private GridStatus[][] board;
 
-    public GameActionMessage(String username, GridType[] gt, int row, int col, GridType[][] board) {
+    public GameActionMessage(String username, GridStatus[] gt, int row, int col, GridStatus[][] board) {
         super(username, gt, row, col);
         this.board = board;
     }
 
-    public GridType[][] getBoard() {
+    public GridStatus[][] getBoard() {
         return board;
     }
 
-    public void setBoard(GridType[][] board) {
+    public void setBoard(GridStatus[][] board) {
         this.board = board;
     }
 
