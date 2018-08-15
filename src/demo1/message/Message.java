@@ -2,20 +2,14 @@ package demo1.message;
 
 import java.io.Serializable;
 
-public abstract class Message implements Serializable {
+public class Message implements Serializable {
 
     public String username;
     public enum MessageType {LOGIN, SYSTEM, CHAT, GAME_ACTION, RESULT}
-    public abstract MessageType getMessageType();
     public String module = "battleship1";
+    public MessageType messageType;
 
     public void setUsername(String username) {
-//        if (username == null) {
-//            throw new IllegalArgumentException("Username cannot be null");
-//        }
-//        if (this.username != null) {
-//            throw new IllegalStateException("Username cannot be changed.");
-//        }
 
         this.username = username;
     }
@@ -35,11 +29,16 @@ public abstract class Message implements Serializable {
         return module;
     }
 
+    public MessageType getMessageType() {
+        return null;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
                 "username='" + username + '\'' +
                 ", module='" + module + '\'' +
+                ", messageType=" + getMessageType() +
                 '}';
     }
 }

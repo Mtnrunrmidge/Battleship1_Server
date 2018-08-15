@@ -21,7 +21,7 @@ public class GridStatusMessage extends Message {
     }
 
     public static GridStatusMessage getEmptyMessage(String username, int row, int col) {
-        return new GridStatusMessage(username, GridStatus.Empty, row, col);
+        return new GridStatusMessage(username, GridStatus.EMPTY, row, col);
     }
 
     private GridStatusMessage(String username, GridStatus gs, int row, int col) {

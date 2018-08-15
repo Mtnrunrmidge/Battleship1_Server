@@ -5,12 +5,12 @@ import java.util.HashSet;
 
 public class GameLogic {
 
-    private HashSet<Ship.ShipType> survivedShips;
+    private HashSet<GridStatus> survivedShips;
     public String username;
     private final static int BOARDSIZE = 10;
     //myboard is the board originally sent from client. Once set to targetboard don't use anymore.
-    private GridType[][] myBoard = new GridType[BOARDSIZE][BOARDSIZE];
-    private GridType[][] targetBoard = new GridType[BOARDSIZE][BOARDSIZE];
+    private GridStatus[][] myBoard = new GridStatus[BOARDSIZE][BOARDSIZE];
+    private GridStatus[][] targetBoard = new GridStatus[BOARDSIZE][BOARDSIZE];
     private GameHandler.GameTurn turn;
 //    private boolean[] survivedShipIds = new boolean[Ship.ShipType.values().length];
     // 1-5, shipId; 9, Guessed/hit attempt; 8, hit target; 7, miss target
@@ -20,12 +20,14 @@ public class GameLogic {
         setTurn(gameTurn);
 
         survivedShips = new HashSet<>();
-        for (Ship.ShipType st: Ship.ShipType.values()) {
-            survivedShips.add(st);
+        for (GridStatus st: GridStatus.values()) {
+            if (st.isShip()) {
+                survivedShips.add(st);
+            }
         }
-        for (GridType[] arr: targetBoard) {
-            for (GridType gt: arr) {
-                gt = GridStatus.Empty;
+        for (GridStatus[] arr: targetBoard) {
+            for (GridStatus gt: arr) {
+                gt = GridStatus.EMPTY;
             }
         }
     }
@@ -34,13 +36,13 @@ public class GameLogic {
         setUsername(username);
 
         survivedShips = new HashSet<>();
-        for (Ship.ShipType st: Ship.ShipType.values()) {
+        for (GridStatus st: GridStatus.values()) {
             survivedShips.add(st);
         }
 
-        for (GridType[] arr: targetBoard) {
-            for (GridType gt: arr) {
-                gt = GridStatus.Empty;
+        for (GridStatus[] arr: targetBoard) {
+            for (GridStatus gt: arr) {
+                gt = GridStatus.EMPTY;
             }
         }
 
@@ -61,16 +63,16 @@ public class GameLogic {
      * @param col
      * @return
      */
-    public GridType[] getHit(GridStatus gs, int row, int col) {
-        GridType[] result = new GridType[3];
+    public GridStatus[] getHit(GridStatus gs, int row, int col) {
+        GridStatus[] result = new GridStatus[3];
 
         //hit
-        if (myBoard[row][col] instanceof Ship.ShipType) {
+        if (myBoard[row][col].isShip()) {
             myBoard[row][col] = GridStatus.HIT;
             result[0] = GridStatus.HIT;
             //miss
-        } else if (myBoard[row][col] instanceof GridStatus) {
-            if (myBoard[row][col].equals(GridStatus.Empty)) {
+        } else  {
+            if (myBoard[row][col].equals(GridStatus.EMPTY)) {
                 myBoard[row][col] = GridStatus.MISS;
                 result[0] = GridStatus.MISS;
             } else {
@@ -84,13 +86,13 @@ public class GameLogic {
         //if all ships have been sunk declare game over
         if (!checkSurvival()) {
             System.out.println("Game over");
-            result[2] = GridStatus.Empty; //usually null if game is not over
+            result[2] = GridStatus.EMPTY; //usually null if game is not over
         }
 
         return result; //returns the [0] guess status, [1] shipname that has been sunk (only if its been sunk), [2] is game over: empty if yes/null if null
     }
 
-    public GridType[] sendDuplicateGuessMessage(){
+    public GridStatus[] sendDuplicateGuessMessage(){
         return null;
     }
 
@@ -98,15 +100,15 @@ public class GameLogic {
      * This returns the shipname if  ship has been sunk.
      * @return
      */
-    public Ship.ShipType checkSurvivedShip() {
-        HashSet<Ship.ShipType> localSurvivedShips = new HashSet<>();
-        HashSet<Ship.ShipType> shipSunkInThisMove = survivedShips;
+    public GridStatus checkSurvivedShip() {
+        HashSet<GridStatus> localSurvivedShips = new HashSet<>();
+        HashSet<GridStatus> shipSunkInThisMove = survivedShips;
 
         //find which ships remain
         for (int rows = 0; rows < BOARDSIZE; rows++) {
             for (int cols = 0; cols < BOARDSIZE; cols++) {
-                if (myBoard[rows][cols] instanceof Ship.ShipType) {
-                    localSurvivedShips.add((Ship.ShipType) myBoard[rows][cols]);
+                if (myBoard[rows][cols].isShip()) {
+                    localSurvivedShips.add((GridStatus) myBoard[rows][cols]);
                 }
             }
         }
@@ -116,11 +118,13 @@ public class GameLogic {
 
         //if there is a sunk ship
         if (shipSunkInThisMove.size() == 1) {
-            Ship.ShipType sunkShipName = shipSunkInThisMove.iterator().next();
+            GridStatus sunkShipName = shipSunkInThisMove.iterator().next();
             survivedShips = localSurvivedShips;
             return sunkShipName;
         } else if (shipSunkInThisMove.size() > 1) {
             try {
+                System.out.println("shipSunkInThisMove" + shipSunkInThisMove);
+                System.out.println("localSurvivedShips: " + localSurvivedShips);
                 throw new IllegalStateException("There're discrepancies between client side and server side.");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -141,7 +145,7 @@ public class GameLogic {
         return (!survivedShips.isEmpty());
     }
 
-    public GridType[][] getTargetBoard() {
+    public GridStatus[][] getTargetBoard() {
         return targetBoard;
     }
 
@@ -155,7 +159,7 @@ public class GameLogic {
     }
 
     public int[] hitEnemy(int row, int col) {
-        if (targetBoard[row][col] == GridStatus.Empty || targetBoard[row][col] == null) {
+        if (targetBoard[row][col] == GridStatus.EMPTY || targetBoard[row][col] == null) {
             targetBoard[row][col] = GridStatus.ATTEMPT;
         }
 
@@ -178,7 +182,7 @@ public class GameLogic {
      * Getter for the gameboard
      * @return
      */
-    public GridType[][] getMyBoard() {
+    public GridStatus[][] getMyBoard() {
         return myBoard;
     }
 
@@ -194,12 +198,12 @@ public class GameLogic {
      * Getter for the survived ships
      * @return
      */
-    public HashSet<Ship.ShipType> getSurvivedShips() {
+    public HashSet<GridStatus> getSurvivedShips() {
         return survivedShips;
     }
 
     //Setter methods
-    public void setTargetBoard(GridType[][] targetBoard) {
+    public void setTargetBoard(GridStatus[][] targetBoard) {
         this.targetBoard = targetBoard;
     }
 
@@ -215,7 +219,7 @@ public class GameLogic {
      * Setter for the gameboard
      * @param myBoard - the gameboard
      */
-    public void setMyBoard(GridType[][] myBoard) {
+    public void setMyBoard(GridStatus[][] myBoard) {
         this.myBoard = myBoard;
     }
 
@@ -241,7 +245,7 @@ public class GameLogic {
      * ToString method to print the board to the console.
      * @param gt2d
      */
-    public static void printBoard(GridType[][] gt2d) {
+    public static void printBoard(GridStatus[][] gt2d) {
 
         if (gt2d != null) {
             for (int i = 0; i < BOARDSIZE; i++) {
@@ -258,18 +262,18 @@ public class GameLogic {
     public static void main(String[] args) {
         GameLogic aa = new GameLogic("Bob the Builder", GameHandler.GameTurn.A); //player A and player B
        // System.out.println(aa.getSurvivedShips());
-        GridType[][] gt = new GridType[10][10];
+        GridStatus[][] gt = new GridStatus[10][10];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                gt[i][j] = GridStatus.Empty;
+                gt[i][j] = GridStatus.EMPTY;
             }
         }
-        gt[2][5] = Ship.ShipType.Cruiser;
-        gt[1][2] = Ship.ShipType.Battleship;
-        gt[3][4] = Ship.ShipType.Carrier;
-        gt[3][5] = Ship.ShipType.Carrier;
-        gt[4][1] = Ship.ShipType.Destroyer;
-        gt[9][2] = Ship.ShipType.Submarine;
+        gt[2][5] = GridStatus.Cruiser;
+        gt[1][2] = GridStatus.Battleship;
+        gt[3][4] = GridStatus.Carrier;
+        gt[3][5] = GridStatus.Carrier;
+        gt[4][1] = GridStatus.Destroyer;
+        gt[9][2] = GridStatus.Submarine;
         gt[1][3] = GridStatus.MISS;
 
         GameLogic.printBoard(gt);

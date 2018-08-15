@@ -1,35 +1,37 @@
 package demo1.message;
 
-import demo1.GridType;
+import demo1.GridStatus;
+
+import java.util.Arrays;
 
 public class SystemMessage extends Message {
 
     public enum SystemResponse {ACK, DENY, READY, START, GAME_OVER_WINNER, GAME_OVER_LOSER, DUPLICATE_USERNAME, DUPLICATE_GUESS, BEGIN_TURN}
-    private SystemResponse sr;
+    private SystemResponse systemResponse;
     private String winner;
-    private GridType[][] gt;
+    private GridStatus[][] gt;
 
-    public SystemMessage(String username, SystemResponse sr) {
+    public SystemMessage(String username, SystemResponse systemResponse) {
         super(null);
-        this.sr = sr;
+        this.systemResponse = systemResponse;
         setWinner(username);
     }
 
-    public SystemMessage(SystemResponse sr) {
+    public SystemMessage(SystemResponse systemResponse) {
         super(null);
-        this.sr = sr;
+        this.systemResponse = systemResponse;
         setWinner(null);
     }
 
-    public SystemMessage(SystemResponse sr, GridType[][] gt) {
+    public SystemMessage(SystemResponse systemResponse, GridStatus[][] gt) {
         super(null);
-        this.sr = sr;
+        this.systemResponse = systemResponse;
         setWinner(null);
         this.gt = gt;
     }
 
     // start game signal from server to clients
-    public static SystemMessage getReadyMessage(GridType[][] gt) {
+    public static SystemMessage getReadyMessage(GridStatus[][] gt) {
         return new SystemMessage(SystemResponse.READY, gt);
     }
 
@@ -66,7 +68,7 @@ public class SystemMessage extends Message {
     }
 
     public SystemResponse getSystemResponse() {
-        return sr;
+        return systemResponse;
     }
 
     public String getWinner() {
@@ -77,7 +79,7 @@ public class SystemMessage extends Message {
         this.winner = winner;
     }
 
-    public GridType[][] getGt() {
+    public GridStatus[][] getGt() {
         return gt;
     }
 
@@ -89,8 +91,12 @@ public class SystemMessage extends Message {
     @Override
     public String toString() {
         return "SystemMessage{" +
-                "sr=" + sr +
+                "systemResponse=" + getSystemResponse() +
                 ", winner='" + winner + '\'' +
+                ", gt=" + Arrays.toString(gt) +
+                ", username='" + username + '\'' +
+                ", module='" + module + '\'' +
+                ", messageType=" + getMessageType() +
                 '}';
     }
 }
