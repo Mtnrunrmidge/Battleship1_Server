@@ -1,28 +1,27 @@
 package demo1;
 
+import demo1.jsonConverters.JsonConverter;
 import demo1.message.*;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+// 8/12 changed PrintWriter to BufferedWriter. Somehow the BufferedReader couldn't read PrintWriter properly
 public class TestingClientV2 {
 
     private Socket socket;
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
+    private BufferedReader br;
+    private BufferedWriter bw;
     private TestGUI cg;
     private Timer timerChat = new Timer();
     private Timer timerAction = new Timer();
     private String username;
     private boolean firstMsg = false;
     private final int BOARDSIZE = 10;
-    GridType[][] gt = new GridType[10][10];
+    GridStatus[][] gt = new GridStatus[BOARDSIZE][BOARDSIZE];
     private GameLogic game;
 
     public static void main(String[] args) throws IOException {
@@ -39,10 +38,10 @@ public class TestingClientV2 {
         socket = new Socket(ia, 8080);
         cg = new TestGUI();
         username = cg.getUsername();
-        ois = new ObjectInputStream(socket.getInputStream());
-        oos = new ObjectOutputStream(socket.getOutputStream());
+        br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-        readThread(socket, ois);
+        readThread(socket, br);
 
         game = new GameLogic(username);
 
@@ -59,41 +58,40 @@ public class TestingClientV2 {
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                gt[i][j] = GridStatus.Empty;
+                gt[i][j] = GridStatus.EMPTY;
             }
         }
 
-        gt[2][5] = Ship.ShipType.Cruiser;
-        gt[2][6] = Ship.ShipType.Cruiser;
-        gt[1][2] = Ship.ShipType.Battleship;
-        gt[2][2] = Ship.ShipType.Battleship;
-        gt[3][4] = Ship.ShipType.Carrier;
-        gt[3][5] = Ship.ShipType.Carrier;
-        gt[3][6] = Ship.ShipType.Carrier;
-        gt[3][7] = Ship.ShipType.Carrier;
-        gt[3][8] = Ship.ShipType.Carrier;
-        gt[4][1] = Ship.ShipType.Destroyer;
-        gt[5][1] = Ship.ShipType.Destroyer;
-        gt[9][2] = Ship.ShipType.Submarine;
-        gt[9][3] = Ship.ShipType.Submarine;
+        gt[2][5] = GridStatus.Cruiser;
+        gt[2][6] = GridStatus.Cruiser;
+        gt[1][2] = GridStatus.Battleship;
+        gt[2][2] = GridStatus.Battleship;
+        gt[3][4] = GridStatus.Carrier;
+        gt[3][5] = GridStatus.Carrier;
+        gt[3][6] = GridStatus.Carrier;
+        gt[3][7] = GridStatus.Carrier;
+        gt[3][8] = GridStatus.Carrier;
+        gt[4][1] = GridStatus.Destroyer;
+        gt[5][1] = GridStatus.Destroyer;
+        gt[9][2] = GridStatus.Submarine;
+        gt[9][3] = GridStatus.Submarine;
 
         game.setMyBoard(gt);
 
         GridStatus[][] opponent = new GridStatus[BOARDSIZE][BOARDSIZE];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                opponent[i][j] = GridStatus.Empty;
+                opponent[i][j] = GridStatus.EMPTY;
             }
         }
 
     }
 
-    private void readThread(Socket socket, ObjectInputStream ois) {
+    private void readThread(Socket socket, BufferedReader br) {
         Thread receiveMessage = new Thread(() -> {
             try {
-                while (socket.isConnected() && !socket.isClosed()) {
-                    readMessage(ois);
-
+                while (!Thread.interrupted() && socket.isConnected() && !socket.isClosed()) {
+                    readMessage();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -103,9 +101,10 @@ public class TestingClientV2 {
         receiveMessage.start();
     }
 
-    private void readMessage(ObjectInputStream ois) throws IOException {
+    private void readMessage() throws IOException {
         try {
-            Message read = (Message) ois.readObject();
+            Message read = JsonConverter.readJson(jsonToString());
+            System.out.println(read.toString());
 
             if (read != null) {
                 if (read.getUsername() == null) {
@@ -124,11 +123,33 @@ public class TestingClientV2 {
                 }
             }
         } catch (Exception e) {
-            disConnect(socket, oos, ois);
+            disConnect(socket, bw, br);
 
             System.exit(1);
         }
     }
+
+    private String jsonToString() {
+        String line = null;
+        System.out.println("jsonToString");
+        try {
+            line = br.readLine();
+            System.out.println(line);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return line;
+    }
+
+
+    public void sendMessage(Message message) throws IOException {
+        // write and send Json
+        bw.write(JsonConverter.writeJson(message));
+        bw.newLine();
+        bw.flush();
+    }
+
 
     private void writeMINE() {
         printBoard(game.getMyBoard());
@@ -146,7 +167,7 @@ public class TestingClientV2 {
         printBoard(gt);
     }
 
-    public void printBoard(GridType[][] gt) {
+    public void printBoard(GridStatus[][] gt) {
 
         if (gt != null) {
             for (int i = 0; i < BOARDSIZE; i++) {
@@ -190,28 +211,28 @@ public class TestingClientV2 {
 //    }
 
     private void login() throws IOException {
-        oos.writeObject(MessageFactory.getLoginMessage(username));
-        oos.flush();
+        this.sendMessage(MessageFactory.getLoginMessage(username));
+        bw.flush();
     }
 
     private void writeMsg(String msg) throws IOException {
-        oos.writeObject(MessageFactory.getChatMessage(msg, username));
-        oos.flush();
+        this.sendMessage(MessageFactory.getChatMessage(username, msg));
+        bw.flush();
     }
 
 
     private void writeHit() throws IOException {
         int[] cells;
         cells = cg.inputCell();
-        oos.writeObject(MessageFactory.getAttemptMessage(username, cells[0], cells[1]));
-        oos.flush();
+        this.sendMessage(MessageFactory.getAttemptMessage(username, cells[0], cells[1]));
+        bw.flush();
     }
 
     private void writeJoin() throws IOException {
         initBoard();
 
-        oos.writeObject(MessageFactory.getReadyMessage(gt));
-        oos.flush();
+        this.sendMessage(MessageFactory.getReadyMessage(gt));
+        bw.flush();
     }
 
 
@@ -253,7 +274,7 @@ public class TestingClientV2 {
                                 writeMINE();
                                 break;
                             case EXIT:
-                                disConnect(socket, oos, ois);
+                                disConnect(socket, bw, br);
                                 break;
                         }
 
@@ -266,10 +287,10 @@ public class TestingClientV2 {
         }, 500);
     }
 
-    private void disConnect(Socket s, ObjectOutputStream oos, ObjectInputStream ois) throws IOException {
+    private void disConnect(Socket s, BufferedWriter pw, BufferedReader br) throws IOException {
         cg.exitWarning();
-        oos.close();
-        ois.close();
+        pw.close();
+        br.close();
         s.close();
         System.exit(0);
     }

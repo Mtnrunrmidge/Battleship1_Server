@@ -18,7 +18,7 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     private String username;
     private Socket socket;
     private BufferedReader br;
-    private PrintWriter pw;
+    private BufferedWriter bw;
    // private ObjectOutputStream oos;
   //  private ObjectInputStream ois;
 
@@ -27,10 +27,7 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
 
         try {
             br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            pw = new PrintWriter(new OutputStreamWriter(
-                    socket.getOutputStream(), "UTF-8"), true);
-//            oos = new ObjectOutputStream(socket.getOutputStream());
-//            ois = new ObjectInputStream(socket.getInputStream());
+            bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,8 +61,12 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
 
         }
 
-        if (pw != null) {
-            pw.close();
+        if (bw != null) {
+            try {
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         try {
@@ -84,17 +85,15 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     }
 
     private String jsonToString() {
-        StringBuilder sb = new StringBuilder();
-        String line;
+        String line = null;
+
         try {
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
+            line = br.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return sb.toString();
+        return line;
     }
 
     private boolean processLogin() {
@@ -104,7 +103,11 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
             return false;
         }
 
+        System.out.println("Line 109");
+
         Message message = JsonConverter.readJson(jsonToString());
+
+        System.out.println("Line 113 " + message.toString());
 
         if (message.getMessageType().equals(Message.MessageType.LOGIN)) {
             setUsername(message.getUsername());
@@ -130,11 +133,19 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
             broadcast(message, getUsername());
         } else {
             this.sendMessage(MessageFactory.getDuplicateUsernameMessage());
-            pw.flush();
+            try {
+                bw.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             shutdownConnection();
         }
-        pw.flush();
+        try {
+            bw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return loginSuccess;
     }
@@ -160,8 +171,13 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     // send the message to the user according to the username
     public void sendMessage(Message message) {
         // write and send Json
-        pw.print(JsonConverter.writeJson(message));
-        pw.flush();
+        try {
+            bw.write(JsonConverter.writeJson(message));
+            bw.newLine();
+            bw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -202,17 +218,22 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     @Override
     public void run() {
         if (processLogin()) {
-            while (!Thread.interrupted() && socket.isConnected() && !socket.isClosed()) {
-                Message message = JsonConverter.readJson(jsonToString());
+            try {
+                while (!Thread.interrupted() && socket.isConnected() && !socket.isClosed()) {
+                    Message message = JsonConverter.readJson(jsonToString());
 
-                if (Message.MessageType.CHAT.equals(message.getMessageType())) {
-                    broadcast(message, this.getUsername());
-                    sendMessage(message);
-                } else if (Message.MessageType.SYSTEM.equals(message.getMessageType())) {
-                    GameHandler.handleSystemMessage((SystemMessage) message, this);
-                } else if (Message.MessageType.GAME_ACTION.equals(message.getMessageType())) {
-                    GameHandler.handleActionMessage((GridStatusMessage) message, this);
+                    if (Message.MessageType.CHAT.equals(message.getMessageType())) {
+                        System.out.println(message);
+                        broadcast(message, this.getUsername());
+                        sendMessage(message);
+                    } else if (Message.MessageType.SYSTEM.equals(message.getMessageType())) {
+                        GameHandler.handleSystemMessage((SystemMessage) message, this);
+                    } else if (Message.MessageType.GAME_ACTION.equals(message.getMessageType())) {
+                        GameHandler.handleActionMessage((GridStatusMessage) message, this);
+                    }
                 }
+            } catch (NullPointerException e) {
+                System.out.println("One client disconnected");
             }
         }
     }
