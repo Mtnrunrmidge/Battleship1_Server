@@ -10,7 +10,7 @@ public class GameLogic {
     private final static int BOARDSIZE = 10;
     //myboard is the board originally sent from client. Once set to targetboard don't use anymore.
     private GridStatus[][] myBoard = new GridStatus[BOARDSIZE][BOARDSIZE];
-    private GridStatus[][] targetBoard = new GridStatus[BOARDSIZE][BOARDSIZE];
+//    private GridStatus[][] targetBoard = new GridStatus[BOARDSIZE][BOARDSIZE];
     private GameHandler.GameTurn turn;
 //    private boolean[] survivedShipIds = new boolean[Ship.ShipType.values().length];
     // 1-5, shipId; 9, Guessed/hit attempt; 8, hit target; 7, miss target
@@ -25,11 +25,11 @@ public class GameLogic {
                 survivedShips.add(st);
             }
         }
-        for (GridStatus[] arr: targetBoard) {
-            for (GridStatus gt: arr) {
-                gt = GridStatus.EMPTY;
-            }
-        }
+//        for (GridStatus[] arr: targetBoard) {
+//            for (GridStatus gt: arr) {
+//                gt = GridStatus.EMPTY;
+//            }
+//        }
     }
 
     public GameLogic(String username) {
@@ -39,12 +39,12 @@ public class GameLogic {
         for (GridStatus st: GridStatus.values()) {
             survivedShips.add(st);
         }
-
-        for (GridStatus[] arr: targetBoard) {
-            for (GridStatus gt: arr) {
-                gt = GridStatus.EMPTY;
-            }
-        }
+//
+//        for (GridStatus[] arr: targetBoard) {
+//            for (GridStatus gt: arr) {
+//                gt = GridStatus.EMPTY;
+//            }
+//        }
 
     }
 
@@ -65,7 +65,9 @@ public class GameLogic {
      */
     public GridStatus[] getHit(GridStatus gs, int row, int col) {
         GridStatus[] result = new GridStatus[3];
-
+        System.out.println();
+        System.out.println("Initial survivedShips: " + survivedShips.toString() );
+        System.out.println();
         //hit
         if (myBoard[row][col].isShip()) {
             myBoard[row][col] = GridStatus.HIT;
@@ -145,29 +147,29 @@ public class GameLogic {
         return (!survivedShips.isEmpty());
     }
 
-    public GridStatus[][] getTargetBoard() {
-        return targetBoard;
-    }
+//    public GridStatus[][] getTargetBoard() {
+//        return targetBoard;
+//    }
 
-    public void hitOrMiss(GridStatus gs, int row, int col) {
+//    public void hitOrMiss(GridStatus gs, int row, int col) {
+//
+//        if (targetBoard[row][col] == GridStatus.ATTEMPT ) {
+//            this.targetBoard[row][col] = gs;
+//        } else {
+//            throw new IllegalArgumentException("Only Grids that are marked as ATTEMPT can be HIT or MISS.");
+//        }
+//    }
 
-        if (targetBoard[row][col] == GridStatus.ATTEMPT ) {
-            this.targetBoard[row][col] = gs;
-        } else {
-            throw new IllegalArgumentException("Only Grids that are marked as ATTEMPT can be HIT or MISS.");
-        }
-    }
-
-    public int[] hitEnemy(int row, int col) {
-        if (targetBoard[row][col] == GridStatus.EMPTY || targetBoard[row][col] == null) {
-            targetBoard[row][col] = GridStatus.ATTEMPT;
-        }
-
-        return new int[]{row, col};
-    }
-    public void setOpponentGridStatus(GridStatus gs, int row, int col) {
-        targetBoard[row][col] = gs;
-    }
+//    public int[] hitEnemy(int row, int col) {
+//        if (targetBoard[row][col] == GridStatus.EMPTY || targetBoard[row][col] == null) {
+//            targetBoard[row][col] = GridStatus.ATTEMPT;
+//        }
+//
+//        return new int[]{row, col};
+//    }
+//    public void setOpponentGridStatus(GridStatus gs, int row, int col) {
+//        targetBoard[row][col] = gs;
+//    }
     //Getter methods
 
     /**
@@ -203,9 +205,9 @@ public class GameLogic {
     }
 
     //Setter methods
-    public void setTargetBoard(GridStatus[][] targetBoard) {
-        this.targetBoard = targetBoard;
-    }
+//    public void setTargetBoard(GridStatus[][] targetBoard) {
+//        this.targetBoard = targetBoard;
+//    }
 
     /**
      * Sets the username
