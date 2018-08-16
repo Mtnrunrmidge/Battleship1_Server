@@ -95,14 +95,14 @@ public class GameHandler implements Runnable{
                     // brief results send to the attacker
                     mh.sendMessage(MessageFactory.getResultMessage(mh.getUsername(), result, msg.getRow(), msg.getCol()));
                     // results with updated board send to the attackee
-                    mh.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
-                            players.get(mh).getMyBoard()));
+                    opponentsMessageHandler.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
+                            players.get(opponentsMessageHandler).getMyBoard()));
 
                     if (result[2] == GridStatus.EMPTY) {
                         game.currentState = GameState.NOT_PLAYING;
                         opponentsMessageHandler.sendMessage(MessageFactory.getLoserGameOverMessage());
                         mh.sendMessage(MessageFactory.getWinnerGameOverMessage());
-                        terminateGame();
+//                        terminateGame();
 
                     }
                     sendBeginTurnMessageToOtherPlayer(opponentsMessageHandler);
