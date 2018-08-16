@@ -5,6 +5,7 @@ import demo1.GridStatus;
 public class GameActionMessage extends ResultMessage {
 
     private GridStatus[][] board;
+    private GridStatus[] result;
 
     public GameActionMessage(String username, GridStatus[] gt, int row, int col, GridStatus[][] board) {
         super(username, gt, row, col);
@@ -19,9 +20,26 @@ public class GameActionMessage extends ResultMessage {
         this.board = board;
     }
 
+    public GridStatus[] getResult() {
+        return result;
+    }
+
     @Override
     public MessageType getMessageType() {
         return MessageType.GAME_ACTION;
+    }
+
+
+    public GridStatus getHitMiss() {
+        return hitMiss;
+    }
+
+    public GridStatus getSinkShip() {
+        return sinkShip;
+    }
+
+    public boolean isSurvival() {
+        return isSurvival;
     }
 
     @Override

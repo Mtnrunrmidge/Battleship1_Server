@@ -2,57 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cda5abd6-8fc2-475d-bcd1-75ac69e4f90c" name="Default" comment="Improved JsonConverter, Converted all Object transitions in MessageHandler to Json, BufferedReader and PrinterWriter.">
-      <change afterPath="$PROJECT_DIR$/gson-2.8.5.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/demo1/jsonConverters/RuntimeTypeAdapterFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Battleship1_Server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Battleship1_Server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/GameLogic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GameHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GameHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GameLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GridStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GridStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GridType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/MessageHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/MessageHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/Ship$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/Ship$ShipType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/Ship.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/jsonConverters/JsonConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/jsonConverters/JsonConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/jsonConverters/MessageWrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/jsonConverters/MessageWrapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/GameActionMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/GameActionMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/GridStatusMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/GridStatusMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/LoginMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/LoginMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/MessageFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/MessageFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/ResultMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/ResultMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/SystemMessage$SystemResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/SystemMessage$SystemResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/SystemMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/SystemMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OLD/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OLD/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OLD/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OLD/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/GameHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/GridStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/GridStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/GridType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/MessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/MessageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/Ship.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/Testing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/TestingClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/TestingClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/TestingClientV2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/TestingClientV2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/jsonConverters/JsonConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/jsonConverters/JsonConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/jsonConverters/MessageWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/jsonConverters/MessageWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/message/GameActionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/message/GameActionMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/message/GridStatusMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/message/GridStatusMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/message/LoginMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/message/LoginMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/message/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/message/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/message/MessageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/message/MessageFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/message/ResultMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/message/ResultMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/demo1/message/SystemMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo1/message/SystemMessage.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -378,7 +328,7 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534155554522" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534156283504" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/flexjson-2.1.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -542,7 +492,7 @@
       <workItem from="1533862899627" duration="3013000" />
       <workItem from="1533868184293" duration="12552000" />
       <workItem from="1534067872888" duration="7969000" />
-      <workItem from="1534107459265" duration="17545000" />
+      <workItem from="1534107459265" duration="18259000" />
     </task>
     <task id="LOCAL-00001" summary="Import the gson lib, created a JsonString Converter, a MessageWrapper class to meet the format in API Document.">
       <created>1533549058614</created>
@@ -562,14 +512,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77405000" />
+    <option name="totallyTimeSpent" value="78119000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1920" height="1037" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49944994" visible="true" weight="0.19210246" />
-      <window_info id="Structure" order="1" sideWeight="0.50055003" side_tool="true" visible="true" weight="0.19210246" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498366" visible="true" weight="0.19210246" />
+      <window_info id="Structure" order="1" sideWeight="0.501634" side_tool="true" visible="true" weight="0.19210246" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -582,7 +531,7 @@
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
       <window_info anchor="bottom" id="Database Changes" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32673267" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32673267" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32893288" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32673267" />
@@ -595,7 +544,7 @@
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info active="true" anchor="right" id="Run" order="9" visible="true" weight="0.2673426" />
+      <window_info anchor="right" id="Run" order="9" visible="true" weight="0.2673426" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
