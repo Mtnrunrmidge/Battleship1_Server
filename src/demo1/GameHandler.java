@@ -30,9 +30,7 @@ public class GameHandler implements Runnable{
 
     public void startGame() {
         currentState = GameState.RUNNING;
-        broadcast(MessageFactory.getStartMessage());
-//        setPlayerBoardA(playerBoardA);
-//        setPlayerBoardB(playerBoardB);
+
         new Thread(this).start();
     }
 
