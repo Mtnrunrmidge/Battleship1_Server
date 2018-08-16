@@ -12,8 +12,9 @@ public class GameHandler implements Runnable{
     public enum GameTurn {A, B}
     private GameState currentState = GameState.JOIN_PHASE;
     private static GameTurn currentTurn  = GameTurn.A;
+    private static ConcurrentHashMap<GameTurn, MessageHandler> playerTurn = new ConcurrentHashMap<>();
     private static ConcurrentHashMap<MessageHandler, GameLogic> players = new ConcurrentHashMap<>();
-    private final int BOARDSIZE = 10;
+    private static final int BOARDSIZE = 10;
     private static GridStatus[][] playerBoardA;
     private static GridStatus[][] playerBoardB;
     private static final int GAMESIZE = 2;
@@ -29,35 +30,50 @@ public class GameHandler implements Runnable{
 
     public void startGame() {
         currentState = GameState.RUNNING;
-        broadcast(MessageFactory.getStartMessage());
-//        setPlayerBoardA(playerBoardA);
-//        setPlayerBoardB(playerBoardB);
+
         new Thread(this).start();
     }
 
     public static void handleSystemMessage(SystemMessage sysMsg, MessageHandler mh) {
         if (sysMsg.getSystemResponse().equals(SystemMessage.SystemResponse.READY)) {
-            if (players.size() < GAMESIZE) {
-                game.join(mh);
 
-                if (currentTurn == GameTurn.A) {
-                    playerBoardA = sysMsg.getGt();
-                    GameLogic.printBoard(playerBoardA);
-                    players.get(mh).setMyBoard(playerBoardA);
-
-                } else {
-                    playerBoardB = sysMsg.getGt();
-                    GameLogic.printBoard(playerBoardB);
-                    players.get(mh).setMyBoard(playerBoardB);
+            GridStatus[][] initalBoard = sysMsg.getGt();
+            HashSet<GridStatus> shipsOnBoard = new HashSet<>();
+            for (int rows = 0; rows < BOARDSIZE; rows++) {
+                for (int cols = 0; cols < BOARDSIZE; cols++) {
+                    if (initalBoard[rows][cols].isShip()) {
+                        shipsOnBoard.add(initalBoard[rows][cols]);
+                    }
                 }
+            }
+            if (shipsOnBoard.size() == 5) {
 
-                nextGameTurn();
+                if (players.size() < GAMESIZE) {
+                    game.join(mh);
 
-                if (players.size() == GAMESIZE) {
-                    game.startGame();
+                    if (currentTurn == GameTurn.A) {
+                        playerBoardA = sysMsg.getGt();
+                        GameLogic.printBoard(playerBoardA);
+                        players.get(mh).setMyBoard(playerBoardA);
+                        playerTurn.put(GameTurn.A, mh);
+
+                    } else {
+                        playerBoardB = sysMsg.getGt();
+                        GameLogic.printBoard(playerBoardB);
+                        players.get(mh).setMyBoard(playerBoardB);
+                        playerTurn.put(GameTurn.B, mh);
+                    }
+
+                    nextGameTurn();
+
+                    if (players.size() == GAMESIZE) {
+                        game.startGame();
+                    }
+                } else {
+                    throw new IllegalStateException("Discrepancy! Only 2 persons are allowed in the one game.");
                 }
             } else {
-                throw new IllegalStateException("Discrepancy! Only 2 persons are allowed in the one game.");
+                mh.sendMessage(MessageFactory.getDenyMessage());
             }
         }
     }
@@ -76,10 +92,14 @@ public class GameHandler implements Runnable{
         // messageSender
         if (players.get(mh).getTurn().equals(currentTurn)) {
 
-            GameLogic messageSender = players.get(mh);
+//            GameLogic currentGameLogic = players.get(mh);
             ConcurrentHashMap<MessageHandler, GameLogic> temp = new ConcurrentHashMap<>(players);
             temp.remove(mh);
             MessageHandler opponentsMessageHandler = temp.entrySet().iterator().next().getKey();
+
+            System.out.println("\nopponentsGameLogic: " + opponentsMessageHandler.getUsername());
+            System.out.println();
+
             GameLogic opponentsGameLogic = temp.get(opponentsMessageHandler);
 
             if (msg.getGs().equals(GridStatus.ATTEMPT)) {
@@ -95,14 +115,16 @@ public class GameHandler implements Runnable{
                     // brief results send to the attacker
                     mh.sendMessage(MessageFactory.getResultMessage(mh.getUsername(), result, msg.getRow(), msg.getCol()));
                     // results with updated board send to the attackee
-                    mh.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
-                            players.get(mh).getMyBoard()));
+//                    opponentsMessageHandler.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
+//                            players.get(opponentsMessageHandler).getMyBoard()));
+                    opponentsMessageHandler.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
+                            opponentsGameLogic.getMyBoard()));
 
                     if (result[2] == GridStatus.EMPTY) {
                         game.currentState = GameState.NOT_PLAYING;
                         opponentsMessageHandler.sendMessage(MessageFactory.getLoserGameOverMessage());
                         mh.sendMessage(MessageFactory.getWinnerGameOverMessage());
-                        terminateGame();
+//                        terminateGame();
 
                     }
                     sendBeginTurnMessageToOtherPlayer(opponentsMessageHandler);
@@ -186,6 +208,7 @@ public class GameHandler implements Runnable{
     public void run() {
         if (players.size() >= GAMESIZE) {
             broadcast(MessageFactory.getStartMessage());
+            playerTurn.get(GameTurn.A).sendMessage(MessageFactory.getBeginTurn());
         } else {
             currentState = GameState.NOT_PLAYING;
             players.clear();
