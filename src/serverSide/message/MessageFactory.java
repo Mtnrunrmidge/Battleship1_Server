@@ -1,6 +1,6 @@
-package demo1.message;
+package serverSide.message;
 
-import demo1.GridStatus;
+import serverSide.GridStatus;
 
 public class MessageFactory {
 

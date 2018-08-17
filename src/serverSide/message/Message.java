@@ -1,4 +1,4 @@
-package demo1.message;
+package serverSide.message;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
-package demo1.jsonConverters;
+package serverSide.jsonConverters;
 
-import demo1.message.Message;
-import demo1.message.MessageFactory;
+import serverSide.message.Message;
+import serverSide.message.MessageFactory;
 
 public class MessageWrapper {
 

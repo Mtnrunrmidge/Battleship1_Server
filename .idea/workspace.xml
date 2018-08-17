@@ -2,7 +2,73 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cda5abd6-8fc2-475d-bcd1-75ac69e4f90c" name="Default" comment="Improved JsonConverter, Converted all Object transitions in MessageHandler to Json, BufferedReader and PrinterWriter.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gson-2.6.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/BattleShipBoVersion.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/Fleet$shipsInFleet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/Fleet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/GameHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/Gameboard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/GuessesByPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/Ship$shipNames.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/Ship$shipStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Game/Ship.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Message/GuessStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Message/Message$MessageType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Message/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Message/MessageFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Message/MessageHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Message/SystemMessage$SystemResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/Message/SystemMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/jsonConverters/JsonConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/OLD/jsonConverters/MessageWrapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/TestingClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GameHandler$GameState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GameHandler$GameTurn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GameHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GameLogic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/GridStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/MessageHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestGUI$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestGUI$GameAction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestGUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/TestingClientV2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/jsonConverters/JsonConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/jsonConverters/MessageWrapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/jsonConverters/RuntimeTypeAdapterFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/jsonConverters/RuntimeTypeAdapterFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/ChatMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/GameActionMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/GridStatusMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/LoginMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/Message$MessageType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/MessageFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/ResultMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/SystemMessage$SystemResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Battleship1_Server/demo1/message/SystemMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/GameHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/GameHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/GridStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/GridStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/MessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/MessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/jsonConverters/JsonConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/jsonConverters/JsonConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/jsonConverters/MessageWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/jsonConverters/MessageWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/jsonConverters/RuntimeTypeAdapterFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/jsonConverters/RuntimeTypeAdapterFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/message/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/message/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/message/GameActionMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/message/GameActionMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/message/GridStatusMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/message/GridStatusMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/message/LoginMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/message/LoginMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/message/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/message/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/message/MessageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/message/MessageFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/message/ResultMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/message/ResultMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/serverSide/message/SystemMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/serverSide/message/SystemMessage.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,17 +85,7 @@
     <window id="1">
       <content type="file-editors">
         <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/demo1/TestingClientV2.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="65">
-                    <caret line="209" column="11" lean-forward="true" selection-start-line="209" selection-start-column="11" selection-end-line="209" selection-end-column="11" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
         </state>
       </content>
     </window>
@@ -74,95 +130,123 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-712359178">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="16" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="16" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="10" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="10" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/message/GridStatusMessage.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
+            <state relative-caret-position="90">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/message/Message.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/message/ChatMessage.java">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/message/GameActionMessage.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/JsonConverter.java">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/message/GridStatusMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/demo1/message/MessageFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="36">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/Server.java">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/message/LoginMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state>
+              <caret column="18" selection-start-column="18" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/MessageHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/message/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="224" column="48" selection-start-line="224" selection-start-column="44" selection-end-line="224" selection-end-column="48" />
+            <state>
+              <caret column="18" selection-start-column="18" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/GameHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/message/MessageFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="155" column="30" selection-start-line="155" selection-start-column="30" selection-end-line="155" selection-end-column="30" />
+            <state relative-caret-position="36">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/GameLogic.java">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/message/ResultMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+            <state relative-caret-position="36">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/demo1/TestingClient.java">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/message/SystemMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+            <state>
+              <caret column="18" selection-start-column="18" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/MessageHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/serverSide/message/ChatMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="18" selection-start-column="18" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -202,22 +286,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Player.java" />
-        <option value="$PROJECT_DIR$/src/Game.java" />
-        <option value="$PROJECT_DIR$/src/Message/GridStatusMessage.java" />
-        <option value="$PROJECT_DIR$/src/Message/GridStatus.java" />
-        <option value="$PROJECT_DIR$/src/Message/GameActionMessage.java" />
-        <option value="$PROJECT_DIR$/src/Message/ResultMessage.java" />
-        <option value="$PROJECT_DIR$/src/GameHandler.java" />
-        <option value="$PROJECT_DIR$/src/Message/GuessStatus.java" />
-        <option value="$PROJECT_DIR$/src/Ship.java" />
-        <option value="$PROJECT_DIR$/src/Fleet.java" />
-        <option value="$PROJECT_DIR$/src/jsonConverters/MessageWraper.java" />
-        <option value="$PROJECT_DIR$/src/jsonConverters/jsonReader.java" />
-        <option value="$PROJECT_DIR$/src/jsonConverters/jsonWriter.java" />
-        <option value="$PROJECT_DIR$/src/jsonConverters/jsonConverter.java" />
-        <option value="$PROJECT_DIR$/src/jsonConverters/MessageWrapper.java" />
-        <option value="$PROJECT_DIR$/src/jsonConverters/JsonConverter.java" />
         <option value="$PROJECT_DIR$/src/Message/SystemMessage.java" />
         <option value="$PROJECT_DIR$/src/Message/MessageFactory.java" />
         <option value="$PROJECT_DIR$/src/Message/MessageHandler.java" />
@@ -253,6 +321,22 @@
         <option value="$PROJECT_DIR$/src/demo1/MessageHandler.java" />
         <option value="$PROJECT_DIR$/src/demo1/message/Message.java" />
         <option value="$PROJECT_DIR$/src/demo1/TestingClientV2.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/jsonConverters/JsonConverter.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/jsonConverters/MessageWrapper.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/jsonConverters/RuntimeTypeAdapterFactory.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/GameHandler.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/GameLogic.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/GridStatus.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/MessageHandler.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/Server.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/message/ChatMessage.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/message/GameActionMessage.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/message/GridStatusMessage.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/message/LoginMessage.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/message/Message.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/message/MessageFactory.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/message/ResultMessage.java" />
+        <option value="$PROJECT_DIR$/src/serverSide/message/SystemMessage.java" />
       </list>
     </option>
   </component>
@@ -277,50 +361,40 @@
         <subPane>
           <expand>
             <path>
-              <item name="Battleship1_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship1_Server" type="462c0819:PsiDirectoryNode" />
+              <item name="Battleship1_ServerCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship1_ServerCode" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Battleship1_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship1_Server" type="462c0819:PsiDirectoryNode" />
+              <item name="Battleship1_ServerCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship1_ServerCode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Battleship1_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship1_Server" type="462c0819:PsiDirectoryNode" />
+              <item name="Battleship1_ServerCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship1_ServerCode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="serverSide" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Battleship1_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship1_Server" type="462c0819:PsiDirectoryNode" />
+              <item name="Battleship1_ServerCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship1_ServerCode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="serverSide" type="462c0819:PsiDirectoryNode" />
               <item name="jsonConverters" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Battleship1_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship1_Server" type="462c0819:PsiDirectoryNode" />
+              <item name="Battleship1_ServerCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Battleship1_ServerCode" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="serverSide" type="462c0819:PsiDirectoryNode" />
               <item name="message" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship1_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Battleship1_Server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="OLD" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Battleship1_Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -328,7 +402,7 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534156283504" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534508797578" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/flexjson-2.1.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -366,7 +440,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestingClientV2">
+  <component name="RunManager" selected="Application.Server (1)">
     <configuration name="GridStatus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo1.GridStatus" />
       <module name="Battleship1_Server" />
@@ -395,13 +469,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JsonConverterFlexJSON" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="demo1.jsonConverters.JsonConverterFlexJSON" />
+    <configuration name="Server (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="serverSide.Server" />
       <module name="Battleship1_Server" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="demo1.jsonConverters.*" />
+          <option name="PATTERN" value="serverSide.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -463,16 +537,16 @@
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.TestingClientV2" />
       <item itemvalue="Application.JsonConverter" />
-      <item itemvalue="Application.JsonConverterFlexJSON" />
       <item itemvalue="Application.GridStatus" />
+      <item itemvalue="Application.Server (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Server (1)" />
         <item itemvalue="Application.TestingClientV2" />
         <item itemvalue="Application.Server" />
         <item itemvalue="Application.GridStatus" />
         <item itemvalue="Application.JsonConverter" />
-        <item itemvalue="Application.JsonConverterFlexJSON" />
       </list>
     </recent_temporary>
   </component>
@@ -493,6 +567,7 @@
       <workItem from="1533868184293" duration="12552000" />
       <workItem from="1534067872888" duration="7969000" />
       <workItem from="1534107459265" duration="18259000" />
+      <workItem from="1534508221586" duration="483000" />
     </task>
     <task id="LOCAL-00001" summary="Import the gson lib, created a JsonString Converter, a MessageWrapper class to meet the format in API Document.">
       <created>1533549058614</created>
@@ -512,13 +587,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78119000" />
+    <option name="totallyTimeSpent" value="78602000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1920" height="1037" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.498366" visible="true" weight="0.19210246" />
-      <window_info id="Structure" order="1" sideWeight="0.501634" side_tool="true" visible="true" weight="0.19210246" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49673203" visible="true" weight="0.19423692" />
+      <window_info id="Structure" order="1" sideWeight="0.503268" side_tool="true" visible="true" weight="0.19423692" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
@@ -531,7 +607,7 @@
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" />
       <window_info anchor="bottom" id="Database Changes" order="6" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32673267" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32673267" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32893288" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32673267" />
@@ -544,7 +620,7 @@
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info anchor="right" id="Run" order="9" visible="true" weight="0.2673426" />
+      <window_info active="true" anchor="right" id="Run" order="9" visible="true" weight="0.2673426" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -559,52 +635,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Improved JsonConverter, Converted all Object transitions in MessageHandler to Json, BufferedReader and PrinterWriter." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Message/GridStatusMessage.java" />
-    <entry file="file://$PROJECT_DIR$/src/Message/LoginMessage.java" />
-    <entry file="file://$PROJECT_DIR$/src/Message/ResultMessage.java" />
-    <entry file="file://$PROJECT_DIR$/src/OLD/Message/GuessStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gameboard.java" />
-    <entry file="file://$PROJECT_DIR$/src/Player.java" />
-    <entry file="file://$PROJECT_DIR$/src/Ship.java" />
-    <entry file="file://$PROJECT_DIR$/src/Fleet.java" />
-    <entry file="file://$PROJECT_DIR$/src/jsonConverters/jsonReader.java" />
-    <entry file="file://$PROJECT_DIR$/src/GameHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/OLD/jsonConverters/MessageWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game.java" />
-    <entry file="file://$PROJECT_DIR$/src/GuessesByPlayer.java" />
-    <entry file="file://$PROJECT_DIR$/src/OLD/Message/MessageFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OLD/Message/SystemMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="44" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/OLD/Game/GameHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="64" column="10" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/OLD/jsonConverters/JsonConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -656,20 +686,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/GridType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/JsonConverterFlexJSON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="45" column="48" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo1/GridType.java" />
+    <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/JsonConverterFlexJSON.java" />
     <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/RuntimeTypeAdapterFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
@@ -705,20 +723,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/GridTypeCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/GridTypeAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="15" lean-forward="true" selection-start-column="2" selection-end-line="17" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/GridTypeCreator.java" />
+    <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/GridTypeAdapter.java" />
     <entry file="file://$PROJECT_DIR$/src/demo1/message/GameActionMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-168">
@@ -733,34 +739,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/TestGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/ShipType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/Testing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/message/GridStatusMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo1/TestGUI.java" />
+    <entry file="file://$PROJECT_DIR$/src/demo1/ShipType.java" />
+    <entry file="file://$PROJECT_DIR$/src/demo1/Testing.java" />
     <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/MessageWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -768,38 +749,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/GameLogic.java">
+    <entry file="file://$PROJECT_DIR$/src/demo1/TestingClient.java" />
+    <entry file="file://$PROJECT_DIR$/src/demo1/TestingClientV2.java" />
+    <entry file="file://$PROJECT_DIR$/src/demo1/message/GridStatusMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/TestingClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/JsonConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/GameHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="155" column="30" selection-start-line="155" selection-start-column="30" selection-end-line="155" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/MessageHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="224" column="48" selection-start-line="224" selection-start-column="44" selection-end-line="224" selection-end-column="48" />
+        <state relative-caret-position="324">
+          <caret line="18" column="66" selection-start-line="18" selection-start-column="66" selection-end-line="18" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -817,24 +772,157 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/demo1/jsonConverters/JsonConverter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="396">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/demo1/TestingClientV2.java">
+    <entry file="file://$PROJECT_DIR$/src/demo1/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="209" column="11" lean-forward="true" selection-start-line="209" selection-start-column="11" selection-end-line="209" selection-end-column="11" />
+        <state relative-caret-position="288">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo1/MessageHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4032">
+          <caret line="224" column="5" selection-start-line="224" selection-start-column="5" selection-end-line="224" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo1/GameHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2790">
+          <caret line="155" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/demo1/GameLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/demo1/message/MessageFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/jsonConverters/JsonConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/jsonConverters/MessageWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/jsonConverters/RuntimeTypeAdapterFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/GameHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/GameLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/GridStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/MessageHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/message/ChatMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/message/GameActionMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/message/GridStatusMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/message/LoginMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/message/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/message/MessageFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/message/ResultMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/message/SystemMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/serverSide/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>

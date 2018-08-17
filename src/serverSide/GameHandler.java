@@ -1,6 +1,6 @@
-package demo1;
+package serverSide;
 
-import demo1.message.*;
+import serverSide.message.*;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

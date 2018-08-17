@@ -1,4 +1,4 @@
-package demo1.jsonConverters;
+package serverSide.jsonConverters;
 
 /*
  * Copyright (C) 2011 Google Inc.

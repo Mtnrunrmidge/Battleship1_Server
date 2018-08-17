@@ -1,10 +1,10 @@
-package demo1;
+package serverSide;
 
-import demo1.message.GridStatusMessage;
-import demo1.message.Message;
-import demo1.message.MessageFactory;
-import demo1.message.SystemMessage;
-import demo1.jsonConverters.*;
+import serverSide.message.GridStatusMessage;
+import serverSide.message.Message;
+import serverSide.message.MessageFactory;
+import serverSide.message.SystemMessage;
+import serverSide.jsonConverters.*;
 
 import java.io.*;
 import java.net.Socket;

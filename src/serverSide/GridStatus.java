@@ -1,4 +1,4 @@
-package demo1;
+package serverSide;
 
 public enum GridStatus {
     HIT(false), MISS(false), ATTEMPT(false), EMPTY(false),
