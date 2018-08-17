@@ -6,7 +6,7 @@ public class LoginMessage extends Message {
         return MessageType.LOGIN;
     }
 
-    public LoginMessage(String username) {
+    LoginMessage(String username) {
         super(username);
     }
 

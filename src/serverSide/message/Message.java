@@ -6,7 +6,7 @@ public class Message implements Serializable {
 
     public String username;
     public enum MessageType {LOGIN, SYSTEM, CHAT, GAME_ACTION, RESULT}
-    public String module = "battleship1";
+    String module = "battleship1";
     public MessageType messageType;
 
     public void setUsername(String username) {
@@ -24,6 +24,7 @@ public class Message implements Serializable {
         setUsername(username);
     }
 
+    // It could be used by the client.
     public String getModule() {
 
         return module;
