@@ -31,39 +31,39 @@ public class SystemMessage extends Message {
     }
 
     // start game signal from server to clients
-    public static SystemMessage getReadyMessage(GridStatus[][] gt) {
+    static SystemMessage getReadyMessage(GridStatus[][] gt) {
         return new SystemMessage(SystemResponse.READY, gt);
     }
 
     // start game signal from server to clients
-    public static SystemMessage getStartMessage() {
+    static SystemMessage getStartMessage() {
         return new SystemMessage(SystemResponse.START);
     }
 
-    public static SystemMessage getAckMessage() {
+    static SystemMessage getAckMessage() {
         return new SystemMessage(SystemResponse.ACK);
     }
 
-    public static SystemMessage getDenyMessage() {
+    static SystemMessage getDenyMessage() {
         return new SystemMessage(SystemResponse.DENY);
     }
 
-    public static SystemMessage getDuplicateUsernameMessage() {
+    static SystemMessage getDuplicateUsernameMessage() {
         return new SystemMessage(SystemResponse.DUPLICATE_USERNAME);
     }
 
-    public static SystemMessage getDuplicateGuessMessage() {
+    static SystemMessage getDuplicateGuessMessage() {
         return new SystemMessage(SystemResponse.DUPLICATE_GUESS);
     }
 
-    public static SystemMessage getBeginTurn() {
+    static SystemMessage getBeginTurn() {
         return new SystemMessage(SystemResponse.BEGIN_TURN);
     }
 
-    public static SystemMessage getWinnerGameOverMessage() {
+    static SystemMessage getWinnerGameOverMessage() {
         return new SystemMessage(SystemResponse.GAME_OVER_WINNER);
     }
-    public static SystemMessage getLoserGameOverMessage() {
+    static SystemMessage getLoserGameOverMessage() {
         return new SystemMessage(SystemResponse.GAME_OVER_LOSER);
     }
 
@@ -75,7 +75,7 @@ public class SystemMessage extends Message {
         return winner;
     }
 
-    public void setWinner(String winner) {
+    private void setWinner(String winner) {
         this.winner = winner;
     }
 

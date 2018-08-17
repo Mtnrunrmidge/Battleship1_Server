@@ -2,14 +2,20 @@ package demo1.message;
 
 import demo1.GridStatus;
 
+import java.util.Arrays;
+
 public class GameActionMessage extends ResultMessage {
 
     private GridStatus[][] board;
     private GridStatus[] result;
+    private int row;
+    private int col;
 
-    public GameActionMessage(String username, GridStatus[] gt, int row, int col, GridStatus[][] board) {
-        super(username, gt, row, col);
-        this.board = board;
+    GameActionMessage(String username, GridStatus[] gt, int row, int col,  GridStatus[][] board) {
+        super(username, gt);
+        setBoard(board);
+        this.row = row;
+        this.col = col;
     }
 
     public GridStatus[][] getBoard() {
@@ -38,17 +44,17 @@ public class GameActionMessage extends ResultMessage {
         return sinkShip;
     }
 
-    public boolean isSurvival() {
-        return isSurvival;
-    }
-
     @Override
     public String toString() {
         return "GameActionMessage{" +
-                "GuessMadeBy= " + username +
+                "board=" + Arrays.toString(board) +
+                ", result=" + Arrays.toString(result) +
+                ", row=" + row +
+                ", col=" + col +
                 ", hitMiss=" + hitMiss +
                 ", sinkShip=" + sinkShip +
                 ", isSurvival=" + isSurvival +
+                ", messageType=" + messageType +
                 '}';
     }
 }

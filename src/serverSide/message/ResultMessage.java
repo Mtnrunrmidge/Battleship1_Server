@@ -10,13 +10,13 @@ public class ResultMessage extends Message {
     GridStatus sinkShip;
     boolean isSurvival;
 
-    public ResultMessage(String username, GridStatus[] result, int row, int col) {
+    ResultMessage(String username, GridStatus[] result) {
         super(username);
 
         System.out.println(Arrays.toString(result));
 
-        hitMiss = (GridStatus) result[0];
-        sinkShip = (GridStatus) result[1];
+        hitMiss = result[0];
+        sinkShip = result[1];
         if (result[2] == null) {
             isSurvival = true;
         } else {
@@ -30,10 +30,6 @@ public class ResultMessage extends Message {
 
     public GridStatus getSinkShip() {
         return sinkShip;
-    }
-
-    public boolean isSurvival() {
-        return isSurvival;
     }
 
     @Override

@@ -7,7 +7,7 @@ public class Server implements Runnable {
 
     private ServerSocket ss;
 
-    public Server(int port) {
+    private Server(int port) {
         try {
             ss = new ServerSocket(port);
         } catch (IOException e) {
@@ -16,16 +16,6 @@ public class Server implements Runnable {
         }
 
         new Thread(this).start();
-    }
-
-    public void shutdown() {
-        try {
-            ss.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        MessageHandler.shutdown();
     }
 
     @Override

@@ -20,17 +20,17 @@ public class GameHandler implements Runnable{
     private static GameHandler game = new GameHandler();
 
 
-    public static void shutdown() {
+    static void shutdown() {
         game = new GameHandler();
     }
 
-    public void startGame() {
+    private void startGame() {
         currentState = GameState.RUNNING;
 
         new Thread(this).start();
     }
 
-    public static void handleSystemMessage(SystemMessage sysMsg, MessageHandler mh) {
+    static void handleSystemMessage(SystemMessage sysMsg, MessageHandler mh) {
         if (sysMsg.getSystemResponse().equals(SystemMessage.SystemResponse.READY)) {
 
             GridStatus[][] initalBoard = sysMsg.getGt();
@@ -76,39 +76,30 @@ public class GameHandler implements Runnable{
 
     private static void nextGameTurn() {
         currentTurn = (currentTurn == GameTurn.A)? GameTurn.B: GameTurn.A;
-        System.out.println("current game turn: " + currentTurn);
-        System.out.println();
     }
 
-    public static void handleActionMessage(GridStatusMessage msg, MessageHandler mh) {
+    static void handleActionMessage(GridStatusMessage msg, MessageHandler mh) {
         if (players.size() != GAMESIZE) {
             throw new IllegalStateException("Two, and only two players. Number of players registered: " + players.size());
         }
 
-        // messageSender
         if (players.get(mh).getTurn().equals(currentTurn)) {
 
             ConcurrentHashMap<MessageHandler, GameLogic> temp = new ConcurrentHashMap<>(players);
             temp.remove(mh);
             MessageHandler opponentsMessageHandler = temp.entrySet().iterator().next().getKey();
 
-            System.out.println("\nopponentsGameLogic: " + opponentsMessageHandler.getUsername());
-            System.out.println();
-
             GameLogic opponentsGameLogic = temp.get(opponentsMessageHandler);
 
             if (msg.getGs().equals(GridStatus.ATTEMPT)) {
-                System.out.println(msg.toString());
                 GridStatus[] result = opponentsGameLogic.getHit(msg.getGs(), msg.getRow(), msg.getCol());
 
-                //send duplicate guess message
                 if(result[0] == null){
                     mh.sendMessage(MessageFactory.getDuplicateGuessMessage());
                 }
                 else {
                     nextGameTurn();
-                    // brief results send to the attacker
-                    mh.sendMessage(MessageFactory.getResultMessage(mh.getUsername(), result, msg.getRow(), msg.getCol()));
+                    mh.sendMessage(MessageFactory.getResultMessage(mh.getUsername(), result));
                     opponentsMessageHandler.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
                             opponentsGameLogic.getMyBoard()));
 
@@ -128,12 +119,11 @@ public class GameHandler implements Runnable{
         }
     }
 
-    public static void sendBeginTurnMessageToOtherPlayer(MessageHandler opponentsMessageHandler){
+    private static void sendBeginTurnMessageToOtherPlayer(MessageHandler opponentsMessageHandler){
         opponentsMessageHandler.sendMessage(MessageFactory.getBeginTurn());
-        System.out.println("Send new turn message to other player");
     }
 
-    public static void terminateGame(){
+    private static void terminateGame(){
         MessageHandler.shutdown();
         game = new GameHandler();
         playerTurn = new ConcurrentHashMap<>();
@@ -141,7 +131,7 @@ public class GameHandler implements Runnable{
         currentTurn  = GameTurn.A;
     }
 
-    public void join(MessageHandler handler) {
+    private void join(MessageHandler handler) {
         if (!currentState.equals(GameState.JOIN_PHASE)) {
             throw new IllegalStateException("It's " + currentState + ", not READY phase.");
         }
@@ -160,34 +150,10 @@ public class GameHandler implements Runnable{
 
     private void broadcast(Message msg, String username) {
         for (MessageHandler player: players.keySet()) {
-            if (username == null || !player.getUsername().equals(username)) {
+            if (!player.getUsername().equals(username) || username == null) {
                 player.sendMessage(msg);
             }
         }
-    }
-
-    public GameState getCurrentState() {
-        return currentState;
-    }
-
-    public GameTurn getCurrentTurn() {
-        return currentTurn;
-    }
-
-    public GridStatus[][] getPlayerBoardA() {
-        return playerBoardA;
-    }
-
-    public void setPlayerBoardA(GridStatus[][] playerBoardA) {
-        GameHandler.playerBoardA = playerBoardA;
-    }
-
-    public GridStatus[][] getPlayerBoardB() {
-        return playerBoardB;
-    }
-
-    public void setPlayerBoardB(GridStatus[][] playerBoardB) {
-        GameHandler.playerBoardB = playerBoardB;
     }
 
     @Override

@@ -9,7 +9,7 @@ public class MessageWrapper {
     private Message.MessageType type;
 
 
-    public MessageWrapper(Message message) {
+    MessageWrapper(Message message) {
         this.message = message;
         this.type = message.getMessageType();
     }

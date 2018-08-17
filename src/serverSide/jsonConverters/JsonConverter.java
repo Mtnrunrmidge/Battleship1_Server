@@ -21,9 +21,7 @@ public class JsonConverter {
     public static String writeJson(Message message) {
         MessageWrapper mw = new MessageWrapper(message);
 
-        String content = gson.toJson(mw);
-
-        return content;
+        return gson.toJson(mw);
     }
 
     public static Message readJson(String jsonFile) {

@@ -153,7 +153,7 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     }
 
     // send the message to the user according to the username
-    public void sendMessage(Message message) {
+    void sendMessage(Message message) {
         // write and send Json
         try {
             bw.write(JsonConverter.writeJson(message));

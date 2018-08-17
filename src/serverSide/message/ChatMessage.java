@@ -4,12 +4,12 @@ public class ChatMessage extends Message {
 
     private String text;
 
-    public ChatMessage(String username, String text) {
+    ChatMessage(String username, String text) {
         super(username);
-        this.text = text;
+        setText(text);
     }
 
-    public ChatMessage(String text) {
+    ChatMessage(String text) {
         super(null);
         this.text = text;
     }
@@ -18,7 +18,7 @@ public class ChatMessage extends Message {
         return text;
     }
 
-    public void setText(String text) {
+    private void setText(String text) {
         this.text = text;
     }
 

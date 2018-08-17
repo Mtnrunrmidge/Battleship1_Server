@@ -11,8 +11,8 @@ public class MessageFactory {
 
 
     // result sent from server to the attacker
-    public static ResultMessage getResultMessage(String username, GridStatus[] gt, int row, int col) {
-        return new ResultMessage(username, gt, row, col);
+    public static ResultMessage getResultMessage(String username, GridStatus[] gt) {
+        return new ResultMessage(username, gt);
     }
 
     // Game message to the attackee, board to ensure integrity
@@ -21,7 +21,7 @@ public class MessageFactory {
     }
 
     public static GridStatusMessage getAttemptMessage(String username, int row, int col) {
-        return (GridStatusMessage) GridStatusMessage.getAttemptMessage(username, row, col);
+        return GridStatusMessage.getAttemptMessage(username, row, col);
     }
 
     public static ChatMessage getChatMessage(String text) {
