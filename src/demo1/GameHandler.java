@@ -124,7 +124,8 @@ public class GameHandler implements Runnable{
                         game.currentState = GameState.NOT_PLAYING;
                         opponentsMessageHandler.sendMessage(MessageFactory.getLoserGameOverMessage());
                         mh.sendMessage(MessageFactory.getWinnerGameOverMessage());
-//                        terminateGame();
+
+                        terminateGame();
 
                     }
                     sendBeginTurnMessageToOtherPlayer(opponentsMessageHandler);
@@ -142,6 +143,10 @@ public class GameHandler implements Runnable{
 
     public static void terminateGame(){
         MessageHandler.shutdown();
+        game = new GameHandler();
+        playerTurn = new ConcurrentHashMap<>();
+        players = new ConcurrentHashMap<>();
+        currentTurn  = GameTurn.A;
     }
 
     public void join(MessageHandler handler) {
