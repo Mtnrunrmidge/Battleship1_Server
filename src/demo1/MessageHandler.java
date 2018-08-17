@@ -8,6 +8,7 @@ import demo1.jsonConverters.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -133,18 +134,6 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
             broadcast(message, getUsername());
         } else {
             this.sendMessage(MessageFactory.getDuplicateUsernameMessage());
-            try {
-                bw.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            shutdownConnection();
-        }
-        try {
-            bw.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         return loginSuccess;
@@ -176,7 +165,7 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
             bw.newLine();
             bw.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Connection lost.");
         }
     }
 

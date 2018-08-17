@@ -36,7 +36,12 @@ public class JsonConverter {
         } catch (JsonSyntaxException e) {
             throw new JsonSyntaxException("Json data corrupted.");
         }
-        return mw.getMessage();
+
+        if (mw != null) {
+            return mw.getMessage();
+        } else {
+            return null;
+        }
     }
 
     public static MessageWrapper readJson2(String jsonFile) {
