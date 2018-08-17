@@ -4,7 +4,6 @@ import demo1.message.*;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 public class GameHandler implements Runnable{
 
@@ -12,16 +11,14 @@ public class GameHandler implements Runnable{
     public enum GameTurn {A, B}
     private GameState currentState = GameState.JOIN_PHASE;
     private static GameTurn currentTurn  = GameTurn.A;
+    private static ConcurrentHashMap<GameTurn, MessageHandler> playerTurn = new ConcurrentHashMap<>();
     private static ConcurrentHashMap<MessageHandler, GameLogic> players = new ConcurrentHashMap<>();
-    private final int BOARDSIZE = 10;
+    private static final int BOARDSIZE = 10;
     private static GridStatus[][] playerBoardA;
     private static GridStatus[][] playerBoardB;
     private static final int GAMESIZE = 2;
     private static GameHandler game = new GameHandler();
 
-//    public void joinGame() {
-//        currentState = GameState.JOIN_PHASE;
-//    }
 
     public static void shutdown() {
         game = new GameHandler();
@@ -29,35 +26,50 @@ public class GameHandler implements Runnable{
 
     public void startGame() {
         currentState = GameState.RUNNING;
-        broadcast(MessageFactory.getStartMessage());
-//        setPlayerBoardA(playerBoardA);
-//        setPlayerBoardB(playerBoardB);
+
         new Thread(this).start();
     }
 
     public static void handleSystemMessage(SystemMessage sysMsg, MessageHandler mh) {
         if (sysMsg.getSystemResponse().equals(SystemMessage.SystemResponse.READY)) {
-            if (players.size() < GAMESIZE) {
-                game.join(mh);
 
-                if (currentTurn == GameTurn.A) {
-                    playerBoardA = sysMsg.getGt();
-                    GameLogic.printBoard(playerBoardA);
-                    players.get(mh).setMyBoard(playerBoardA);
-
-                } else {
-                    playerBoardB = sysMsg.getGt();
-                    GameLogic.printBoard(playerBoardB);
-                    players.get(mh).setMyBoard(playerBoardB);
+            GridStatus[][] initalBoard = sysMsg.getGt();
+            HashSet<GridStatus> shipsOnBoard = new HashSet<>();
+            for (int rows = 0; rows < BOARDSIZE; rows++) {
+                for (int cols = 0; cols < BOARDSIZE; cols++) {
+                    if (initalBoard[rows][cols].isShip()) {
+                        shipsOnBoard.add(initalBoard[rows][cols]);
+                    }
                 }
+            }
+            if (shipsOnBoard.size() == 5) {
 
-                nextGameTurn();
+                if (players.size() < GAMESIZE) {
+                    game.join(mh);
 
-                if (players.size() == GAMESIZE) {
-                    game.startGame();
+                    if (currentTurn == GameTurn.A) {
+                        playerBoardA = sysMsg.getGt();
+                        GameLogic.printBoard(playerBoardA);
+                        players.get(mh).setMyBoard(playerBoardA);
+                        playerTurn.put(GameTurn.A, mh);
+
+                    } else {
+                        playerBoardB = sysMsg.getGt();
+                        GameLogic.printBoard(playerBoardB);
+                        players.get(mh).setMyBoard(playerBoardB);
+                        playerTurn.put(GameTurn.B, mh);
+                    }
+
+                    nextGameTurn();
+
+                    if (players.size() == GAMESIZE) {
+                        game.startGame();
+                    }
+                } else {
+                    throw new IllegalStateException("Discrepancy! Only 2 persons are allowed in the one game.");
                 }
             } else {
-                throw new IllegalStateException("Discrepancy! Only 2 persons are allowed in the one game.");
+                mh.sendMessage(MessageFactory.getDenyMessage());
             }
         }
     }
@@ -76,10 +88,13 @@ public class GameHandler implements Runnable{
         // messageSender
         if (players.get(mh).getTurn().equals(currentTurn)) {
 
-            GameLogic messageSender = players.get(mh);
             ConcurrentHashMap<MessageHandler, GameLogic> temp = new ConcurrentHashMap<>(players);
             temp.remove(mh);
             MessageHandler opponentsMessageHandler = temp.entrySet().iterator().next().getKey();
+
+            System.out.println("\nopponentsGameLogic: " + opponentsMessageHandler.getUsername());
+            System.out.println();
+
             GameLogic opponentsGameLogic = temp.get(opponentsMessageHandler);
 
             if (msg.getGs().equals(GridStatus.ATTEMPT)) {
@@ -94,14 +109,14 @@ public class GameHandler implements Runnable{
                     nextGameTurn();
                     // brief results send to the attacker
                     mh.sendMessage(MessageFactory.getResultMessage(mh.getUsername(), result, msg.getRow(), msg.getCol()));
-                    // results with updated board send to the attackee
-                    mh.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
-                            players.get(mh).getMyBoard()));
+                    opponentsMessageHandler.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
+                            opponentsGameLogic.getMyBoard()));
 
                     if (result[2] == GridStatus.EMPTY) {
                         game.currentState = GameState.NOT_PLAYING;
                         opponentsMessageHandler.sendMessage(MessageFactory.getLoserGameOverMessage());
                         mh.sendMessage(MessageFactory.getWinnerGameOverMessage());
+
                         terminateGame();
 
                     }
@@ -120,6 +135,10 @@ public class GameHandler implements Runnable{
 
     public static void terminateGame(){
         MessageHandler.shutdown();
+        game = new GameHandler();
+        playerTurn = new ConcurrentHashMap<>();
+        players = new ConcurrentHashMap<>();
+        currentTurn  = GameTurn.A;
     }
 
     public void join(MessageHandler handler) {
@@ -133,17 +152,6 @@ public class GameHandler implements Runnable{
         if (players.size() > GAMESIZE) {
             throw new IllegalStateException("Discrepancy! Only 2 persons are allowed in the one game.");
         }
-    }
-
-    public String[] getPlayerName() {
-        String[] names = new String[players.size()];
-
-        int index = 0;
-        for (MessageHandler player: players.keySet()) {
-            names[index++] = player.getUsername();
-        }
-
-        return names;
     }
 
     private void broadcast(Message msg) {
@@ -171,7 +179,7 @@ public class GameHandler implements Runnable{
     }
 
     public void setPlayerBoardA(GridStatus[][] playerBoardA) {
-        this.playerBoardA = playerBoardA;
+        GameHandler.playerBoardA = playerBoardA;
     }
 
     public GridStatus[][] getPlayerBoardB() {
@@ -179,13 +187,14 @@ public class GameHandler implements Runnable{
     }
 
     public void setPlayerBoardB(GridStatus[][] playerBoardB) {
-        this.playerBoardB = playerBoardB;
+        GameHandler.playerBoardB = playerBoardB;
     }
 
     @Override
     public void run() {
         if (players.size() >= GAMESIZE) {
             broadcast(MessageFactory.getStartMessage());
+            playerTurn.get(GameTurn.A).sendMessage(MessageFactory.getBeginTurn());
         } else {
             currentState = GameState.NOT_PLAYING;
             players.clear();
@@ -193,14 +202,6 @@ public class GameHandler implements Runnable{
     }
 
     public static void main(String[] args) {
-        HashMap<String, String> demo = new HashMap<>();
-        demo.put("1", "one");
-        demo.put("2", "one");
 
-        HashMap<String, String> temp = (HashMap<String, String>) demo.clone();
-
-        System.out.println(demo.get("1"));
-        System.out.println(temp.remove("1"));
-        System.out.println(demo.keySet());
     }
 }
