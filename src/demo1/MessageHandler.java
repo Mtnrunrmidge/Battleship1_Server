@@ -8,7 +8,6 @@ import demo1.jsonConverters.*;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -20,8 +19,6 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
     private Socket socket;
     private BufferedReader br;
     private BufferedWriter bw;
-   // private ObjectOutputStream oos;
-  //  private ObjectInputStream ois;
 
     private MessageHandler(Socket socket) {
         this.socket = socket;
@@ -36,13 +33,13 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
         new Thread(this).start();
     }
 
-    public static MessageHandler handleConnection(Socket socket) {
+    static MessageHandler handleConnection(Socket socket) {
         System.out.println("Connection from: " + socket.getRemoteSocketAddress());
 
         return new MessageHandler(socket);
     }
 
-    public static void shutdown() {
+    static void shutdown() {
         GameHandler.shutdown();
 
         Iterator<MessageHandler> iterator = connections.iterator();
@@ -73,7 +70,7 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
         try {
             socket.close();
         } catch (IOException e) {
-
+            System.err.println("Socket already closed");
         }
 
         Iterator<MessageHandler> iterator = connections.iterator();
@@ -104,14 +101,12 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
             return false;
         }
 
-        System.out.println("Line 109");
-
         Message message = JsonConverter.readJson(jsonToString());
 
-        System.out.println("Line 113 " + message.toString());
-
-        if (message.getMessageType().equals(Message.MessageType.LOGIN)) {
-            setUsername(message.getUsername());
+        if (message != null) {
+            if (message.getMessageType().equals(Message.MessageType.LOGIN)) {
+                setUsername(message.getUsername());
+            }
         }
 
         if (getUsername() != null) {
@@ -211,14 +206,16 @@ public class MessageHandler implements Runnable, Comparable<MessageHandler> {
                 while (!Thread.interrupted() && socket.isConnected() && !socket.isClosed()) {
                     Message message = JsonConverter.readJson(jsonToString());
 
-                    if (Message.MessageType.CHAT.equals(message.getMessageType())) {
-                        System.out.println(message);
-                        broadcast(message, this.getUsername());
-                        sendMessage(message);
-                    } else if (Message.MessageType.SYSTEM.equals(message.getMessageType())) {
-                        GameHandler.handleSystemMessage((SystemMessage) message, this);
-                    } else if (Message.MessageType.GAME_ACTION.equals(message.getMessageType())) {
-                        GameHandler.handleActionMessage((GridStatusMessage) message, this);
+                    if (message != null) {
+                        if (Message.MessageType.CHAT.equals(message.getMessageType())) {
+                            System.out.println(message);
+                            broadcast(message, this.getUsername());
+                            sendMessage(message);
+                        } else if (Message.MessageType.SYSTEM.equals(message.getMessageType())) {
+                            GameHandler.handleSystemMessage((SystemMessage) message, this);
+                        } else if (Message.MessageType.GAME_ACTION.equals(message.getMessageType())) {
+                            GameHandler.handleActionMessage((GridStatusMessage) message, this);
+                        }
                     }
                 }
             } catch (NullPointerException e) {

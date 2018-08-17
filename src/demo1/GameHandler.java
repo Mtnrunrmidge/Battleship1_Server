@@ -4,7 +4,6 @@ import demo1.message.*;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 public class GameHandler implements Runnable{
 
@@ -20,9 +19,6 @@ public class GameHandler implements Runnable{
     private static final int GAMESIZE = 2;
     private static GameHandler game = new GameHandler();
 
-//    public void joinGame() {
-//        currentState = GameState.JOIN_PHASE;
-//    }
 
     public static void shutdown() {
         game = new GameHandler();
@@ -92,7 +88,6 @@ public class GameHandler implements Runnable{
         // messageSender
         if (players.get(mh).getTurn().equals(currentTurn)) {
 
-//            GameLogic currentGameLogic = players.get(mh);
             ConcurrentHashMap<MessageHandler, GameLogic> temp = new ConcurrentHashMap<>(players);
             temp.remove(mh);
             MessageHandler opponentsMessageHandler = temp.entrySet().iterator().next().getKey();
@@ -114,9 +109,6 @@ public class GameHandler implements Runnable{
                     nextGameTurn();
                     // brief results send to the attacker
                     mh.sendMessage(MessageFactory.getResultMessage(mh.getUsername(), result, msg.getRow(), msg.getCol()));
-                    // results with updated board send to the attackee
-//                    opponentsMessageHandler.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
-//                            players.get(opponentsMessageHandler).getMyBoard()));
                     opponentsMessageHandler.sendMessage(MessageFactory.getGameActionMessage(opponentsGameLogic.getUsername(), result, msg.getRow(), msg.getCol(),
                             opponentsGameLogic.getMyBoard()));
 
@@ -162,17 +154,6 @@ public class GameHandler implements Runnable{
         }
     }
 
-    public String[] getPlayerName() {
-        String[] names = new String[players.size()];
-
-        int index = 0;
-        for (MessageHandler player: players.keySet()) {
-            names[index++] = player.getUsername();
-        }
-
-        return names;
-    }
-
     private void broadcast(Message msg) {
         broadcast(msg, null);
     }
@@ -198,7 +179,7 @@ public class GameHandler implements Runnable{
     }
 
     public void setPlayerBoardA(GridStatus[][] playerBoardA) {
-        this.playerBoardA = playerBoardA;
+        GameHandler.playerBoardA = playerBoardA;
     }
 
     public GridStatus[][] getPlayerBoardB() {
@@ -206,7 +187,7 @@ public class GameHandler implements Runnable{
     }
 
     public void setPlayerBoardB(GridStatus[][] playerBoardB) {
-        this.playerBoardB = playerBoardB;
+        GameHandler.playerBoardB = playerBoardB;
     }
 
     @Override
@@ -221,14 +202,6 @@ public class GameHandler implements Runnable{
     }
 
     public static void main(String[] args) {
-        HashMap<String, String> demo = new HashMap<>();
-        demo.put("1", "one");
-        demo.put("2", "one");
 
-        HashMap<String, String> temp = (HashMap<String, String>) demo.clone();
-
-        System.out.println(demo.get("1"));
-        System.out.println(temp.remove("1"));
-        System.out.println(demo.keySet());
     }
 }

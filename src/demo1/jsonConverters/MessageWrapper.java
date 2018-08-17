@@ -1,6 +1,5 @@
 package demo1.jsonConverters;
 
-import demo1.message.LoginMessage;
 import demo1.message.Message;
 import demo1.message.MessageFactory;
 

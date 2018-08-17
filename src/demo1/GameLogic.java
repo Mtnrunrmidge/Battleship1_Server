@@ -25,11 +25,6 @@ public class GameLogic {
                 survivedShips.add(st);
             }
         }
-//        for (GridStatus[] arr: targetBoard) {
-//            for (GridStatus gt: arr) {
-//                gt = GridStatus.EMPTY;
-//            }
-//        }
     }
 
     public GameLogic(String username) {
@@ -39,12 +34,6 @@ public class GameLogic {
         for (GridStatus st: GridStatus.values()) {
             survivedShips.add(st);
         }
-//
-//        for (GridStatus[] arr: targetBoard) {
-//            for (GridStatus gt: arr) {
-//                gt = GridStatus.EMPTY;
-//            }
-//        }
 
     }
 
@@ -79,7 +68,6 @@ public class GameLogic {
                 result[0] = GridStatus.MISS;
             } else {
                 sendDuplicateGuessMessage();
-                //throw new IllegalStateException("Already attacked");
             }
         }
 
@@ -147,31 +135,6 @@ public class GameLogic {
         return (!survivedShips.isEmpty());
     }
 
-//    public GridStatus[][] getTargetBoard() {
-//        return targetBoard;
-//    }
-
-//    public void hitOrMiss(GridStatus gs, int row, int col) {
-//
-//        if (targetBoard[row][col] == GridStatus.ATTEMPT ) {
-//            this.targetBoard[row][col] = gs;
-//        } else {
-//            throw new IllegalArgumentException("Only Grids that are marked as ATTEMPT can be HIT or MISS.");
-//        }
-//    }
-
-//    public int[] hitEnemy(int row, int col) {
-//        if (targetBoard[row][col] == GridStatus.EMPTY || targetBoard[row][col] == null) {
-//            targetBoard[row][col] = GridStatus.ATTEMPT;
-//        }
-//
-//        return new int[]{row, col};
-//    }
-//    public void setOpponentGridStatus(GridStatus gs, int row, int col) {
-//        targetBoard[row][col] = gs;
-//    }
-    //Getter methods
-
     /**
      * Getter for turn
      * @return
@@ -203,11 +166,6 @@ public class GameLogic {
     public HashSet<GridStatus> getSurvivedShips() {
         return survivedShips;
     }
-
-    //Setter methods
-//    public void setTargetBoard(GridStatus[][] targetBoard) {
-//        this.targetBoard = targetBoard;
-//    }
 
     /**
      * Sets the username
@@ -263,7 +221,6 @@ public class GameLogic {
 
     public static void main(String[] args) {
         GameLogic aa = new GameLogic("Bob the Builder", GameHandler.GameTurn.A); //player A and player B
-       // System.out.println(aa.getSurvivedShips());
         GridStatus[][] gt = new GridStatus[10][10];
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
