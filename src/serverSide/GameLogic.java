@@ -11,7 +11,7 @@ public class GameLogic {
     private GridStatus[][] myBoard = new GridStatus[BOARDSIZE][BOARDSIZE];
     private GameHandler.GameTurn turn;
 
-    GameLogic(String username, GameHandler.GameTurn gameTurn) {
+    public GameLogic(String username, GameHandler.GameTurn gameTurn) {
         setUsername(username);
         setTurn(gameTurn);
 
@@ -21,6 +21,11 @@ public class GameLogic {
                 survivedShips.add(st);
             }
         }
+    }
+
+    public GameLogic(String username)
+    {
+        setUsername(username);
     }
 
     GridStatus[] getHit(GridStatus gs, int row, int col) {
@@ -91,7 +96,7 @@ public class GameLogic {
         return turn;
     }
 
-    GridStatus[][] getMyBoard() {
+    public GridStatus[][] getMyBoard() {
         return myBoard;
     }
 
